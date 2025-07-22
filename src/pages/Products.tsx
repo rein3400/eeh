@@ -75,8 +75,6 @@ const keyframes = `
 interface Product {
   id: number;
   title: string;
-  price: string;
-  originalPrice?: string;
   description: string;
   features: string[];
   badge?: string;
@@ -137,7 +135,6 @@ const Products = () => {
     {
       id: 1,
       title: "TOEFL Preparation Test",
-      price: "Rp 150.000",
       description: "Tes Preparation secara online untuk mengukur sampai berapa skor tes sebelum mengambil real test untuk TOEFL ITP®",
       features: [
         "Tes simulasi TOEFL ITP®",
@@ -158,7 +155,6 @@ const Products = () => {
     {
       id: 2,
       title: "4 Hours One Day Before Test",
-      price: "Rp 1.200.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "4 jam intensive training",
@@ -180,7 +176,6 @@ const Products = () => {
     {
       id: 3,
       title: "7 Days Short Course",
-      price: "Rp 1.800.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "7 hari pembelajaran intensif",
@@ -202,7 +197,6 @@ const Products = () => {
     {
       id: 4,
       title: "10 Meeting Intensive",
-      price: "Rp 2.500.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "10 pertemuan intensif",
@@ -224,7 +218,6 @@ const Products = () => {
     {
       id: 5,
       title: "15 Meeting Intensive",
-      price: "Rp 3.200.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "15 pertemuan intensif",
@@ -246,7 +239,6 @@ const Products = () => {
     {
       id: 6,
       title: "20 Meeting Intensive",
-      price: "Rp 4.000.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "20 pertemuan intensif",
@@ -268,7 +260,6 @@ const Products = () => {
     {
       id: 7,
       title: "30 Meeting Intensive",
-      price: "Rp 5.500.000",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
         "30 pertemuan intensif",
@@ -484,13 +475,6 @@ const Products = () => {
                               {product.highlight}
                             </p>
 
-                            {/* Price */}
-                            <div className="flex items-center space-x-3 mb-6">
-                              <div className="text-4xl font-bold">{product.price}</div>
-                              {product.originalPrice && (
-                                <div className="text-xl text-[#f09a53] line-through">{product.originalPrice}</div>
-                              )}
-                            </div>
 
                             {/* Duration & Rating */}
                             <div className="flex items-center space-x-6 mb-6">
@@ -625,12 +609,6 @@ const Products = () => {
                           <h3 className="text-xl font-bold text-white mb-2">
                             {product.title}
                           </h3>
-                          <div className="flex items-center space-x-2">
-                            <div className="text-2xl font-bold text-white">{product.price}</div>
-                            {product.originalPrice && (
-                              <div className="text-sm text-[#f09a53] line-through">{product.originalPrice}</div>
-                            )}
-                          </div>
                         </div>
                       </div>
 
@@ -784,4 +762,3 @@ const Products = () => {
 };
 
 export default Products;
-

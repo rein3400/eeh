@@ -269,7 +269,7 @@ const Home = () => {
     {
       id: 1,
       title: "TOEFL ITP® Test Level 1",
-      price: "Mulai dari Rp 650.000",
+      price: "Mulai dari Rp 600.000",
       originalPrice: null,
       description: "Tes TOEFL ITP® resmi dari ETS Amerika Serikat dengan sertifikat yang diakui institusi pendidikan",
       features: [
