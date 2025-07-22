@@ -522,21 +522,21 @@ const Products = () => {
                             </div>
 
                             {/* Features Overlay */}
-                            <div className="relative p-8 lg:p-12 h-full flex flex-col justify-center">
-                              <h4 className="text-white text-xl font-bold mb-6">Fitur Program:</h4>
-                              <ul className="space-y-3">
+                            <div className="relative p-6 sm:p-8 lg:p-12 h-full flex flex-col justify-center">
+                              <h4 className="text-white text-lg sm:text-xl font-bold mb-4 sm:mb-6">Fitur Program:</h4>
+                              <ul className="space-y-2 sm:space-y-3">
                                 {product.features.map((feature, featureIndex) => (
                                   <li key={featureIndex} className="flex items-start text-white">
-                                    <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm lg:text-base">{feature}</span>
+                                    <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" />
+                                    <span className="text-xs sm:text-sm lg:text-base">{feature}</span>
                                   </li>
                                 ))}
                               </ul>
 
                               {/* Tags */}
-                              <div className="flex flex-wrap gap-2 mt-6">
+                              <div className="flex flex-wrap gap-1 sm:gap-2 mt-4 sm:mt-6">
                                 {product.tags.map((tag, tagIndex) => (
-                                  <span key={tagIndex} className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                                  <span key={tagIndex} className="bg-white/20 backdrop-blur-sm text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                                     {tag}
                                   </span>
                                 ))}
