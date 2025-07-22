@@ -456,57 +456,56 @@ const Products = () => {
                   {products.map((product, index) => (
                     <div key={product.id} className="w-full flex-shrink-0">
                       <div className="bg-gradient-to-br from-[#e87211] to-[#d4640e] rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] sm:min-h-[500px]">
                           {/* Left Side - Content */}
-                          <div className="p-8 lg:p-12 flex flex-col justify-center text-white">
+                          <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center text-white">
                             {/* Badge */}
                             {product.badge && (
-                              <div className="mb-4">
-                                <span className={`inline-block px-4 py-2 rounded-full text-sm font-bold ${getBadgeColor(product.badge)}`}>
+                              <div className="mb-3 sm:mb-4">
+                                <span className={`inline-block px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-bold ${getBadgeColor(product.badge)}`}>
                                   {product.badge}
                                 </span>
                               </div>
                             )}
 
                             {/* Title */}
-                            <h3 className="text-3xl lg:text-4xl font-bold mb-4">
+                            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
                               {product.title}
                             </h3>
 
                             {/* Highlight */}
-                            <p className="text-[#f09a53] text-lg mb-6 italic">
+                            <p className="text-[#f09a53] text-base sm:text-lg mb-4 sm:mb-6 italic">
                               {product.highlight}
                             </p>
 
-
                             {/* Duration & Rating */}
-                            <div className="flex items-center space-x-6 mb-6">
+                            <div className="flex flex-wrap items-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 text-sm sm:text-base">
                               <div className="flex items-center space-x-2">
-                                <Clock className="h-5 w-5" />
+                                <Clock className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <span>{product.duration}</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Star className="h-5 w-5 text-yellow-400 fill-current" />
+                                <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
                                 <span>{product.rating}</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Users className="h-5 w-5" />
+                                <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <span>{product.students}</span>
                               </div>
                             </div>
 
                             {/* Description */}
-                            <p className="text-[#f09a53] mb-6 leading-relaxed">
+                            <p className="text-[#f09a53] mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                               {product.description}
                             </p>
 
                             {/* CTA Button */}
                             <button
                               onClick={handleOnlineRegistration}
-                              className="bg-white text-[#e87211] px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-lg transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
+                              className="bg-white text-[#e87211] px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-bold text-base sm:text-lg transform hover:scale-105 shadow-lg inline-flex items-center justify-center w-full sm:w-auto"
                             >
                               Daftar Program
-                              <ArrowRight className="ml-2 h-5 w-5" />
+                              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                             </button>
                           </div>
 
