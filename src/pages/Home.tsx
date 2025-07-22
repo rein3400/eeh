@@ -390,21 +390,21 @@ const Home = () => {
               </div>
 
               {/* Elegant CTA Section */}
-              <div className={`${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              <div className={`px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                    style={isVisible ? {...animations.fadeInUp, animationDelay: '0.7s'} : {}}>
-                <div className="mb-8">
-                  <p className="text-lg text-gray-600 mb-6 font-light">
+                <div className="mb-6 sm:mb-8">
+                  <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6 font-light">
                     Jangan biarkan impian Anda hanya menjadi angan-angan
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
                     <button
                       onClick={handleOnlineRegistration}
-                      className="group relative bg-gradient-to-r from-[#e87211] to-orange-400 text-white px-10 py-5 rounded-2xl hover:from-[#d4640e] hover:to-orange-500 transition-all duration-500 font-bold text-lg shadow-2xl hover:shadow-orange-200 transform hover:scale-105"
+                      className="group relative bg-gradient-to-r from-[#e87211] to-orange-400 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl hover:from-[#d4640e] hover:to-orange-500 transition-all duration-500 font-bold text-base sm:text-lg shadow-2xl hover:shadow-orange-200 transform hover:scale-105 w-full sm:w-auto"
                     >
-                      <span className="relative z-10 flex items-center">
+                      <span className="relative z-10 flex items-center justify-center">
                         Mulai Perjalanan Anda
-                        <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-[#e87211] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </button>
@@ -417,7 +417,7 @@ const Home = () => {
                 </div>
                 
                 {/* Trust indicators */}
-                <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
+                <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm text-gray-500">
                   <div className="flex items-center">
                     <Shield className="h-4 w-4 mr-2 text-[#e87211]" />
                     <span>Sertifikat Resmi ETS</span>
