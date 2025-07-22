@@ -66,8 +66,8 @@ const Contact = () => {
     setIsVisible(true);
   }, []);
 
-  const handleOnlineRegistration = () => {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfIjU2ZlkbdiH1mcfN2U6khlsRg-k3x-KrEkkPDGS_J2rZRsA/formResponse', '_blank');
+  const handleWhatsAppContact = () => {
+    window.open('https://api.whatsapp.com/send/?phone=6285225972995&text&type=phone_number&app_absent=0', '_blank');
   };
 
   const contactMethods = [
@@ -78,7 +78,7 @@ const Contact = () => {
       contact: "",
       action: "Hubungi Kami",
       color: "bg-[#006400] hover:bg-[#004d00]",
-      onClick: handleOnlineRegistration,
+      onClick: handleWhatsAppContact,
       features: ["Proses cepat", "Mudah", "Konsultasi gratis"]
     }
   ];
@@ -194,7 +194,7 @@ const Contact = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={handleOnlineRegistration}
+                  onClick={handleWhatsAppContact}
                   className="bg-[#e97311] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg hover:bg-[#d4640e] transition-all duration-300 font-semibold text-lg inline-flex items-center justify-center group shadow-lg"
                 >
                   <MessageCircle className="mr-2 h-5 w-5" />
