@@ -416,16 +416,16 @@ const Products = () => {
                  onMouseLeave={() => setIsHovered(false)}>
               
               {/* Carousel Controls */}
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 gap-4 sm:gap-0">
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={() => setIsAutoPlay(!isAutoPlay)}
-                    className="flex items-center space-x-2 bg-[#e87211] text-white px-4 py-2 rounded-lg hover:bg-[#d4640e] transition-colors"
+                    className="flex items-center space-x-2 bg-[#e87211] text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-[#d4640e] transition-colors text-sm sm:text-base"
                   >
-                    {isAutoPlay ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                    <span>{isAutoPlay ? 'Pause' : 'Play'}</span>
+                    {isAutoPlay ? <Pause className="h-3 w-3 sm:h-4 sm:w-4" /> : <Play className="h-3 w-3 sm:h-4 sm:w-4" />}
+                    <span className="hidden sm:inline">{isAutoPlay ? 'Pause' : 'Play'}</span>
                   </button>
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 text-sm sm:text-base">
                     {currentSlide + 1} / {products.length}
                   </span>
                 </div>
@@ -435,13 +435,13 @@ const Products = () => {
                     onClick={prevSlide}
                     className="bg-white border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition-colors shadow-md"
                   >
-                    <ChevronLeft className="h-5 w-5 text-gray-600" />
+                    <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                   </button>
                   <button
                     onClick={nextSlide}
                     className="bg-white border border-gray-300 p-2 rounded-lg hover:bg-gray-50 transition-colors shadow-md"
                   >
-                    <ChevronRight className="h-5 w-5 text-gray-600" />
+                    <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
                   </button>
                 </div>
               </div>
