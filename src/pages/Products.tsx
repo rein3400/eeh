@@ -374,23 +374,26 @@ const Products = () => {
         </section>
 
         {/* Filter Section */}
-        <section className="py-8 bg-white border-b border-gray-200">
+        <section className="py-6 sm:py-8 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-4">
-              <span className="text-gray-700 font-medium self-center">Filter Kategori:</span>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                    selectedCategory === category.id
-                      ? 'bg-[#e87211] text-white shadow-lg transform scale-105'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category.label} ({category.count})
-                </button>
-              ))}
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+              <span className="text-gray-700 font-medium self-center text-center sm:text-left mb-2 sm:mb-0">Filter Kategori:</span>
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
+                      selectedCategory === category.id
+                        ? 'bg-[#e87211] text-white shadow-lg transform scale-105'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span className="hidden sm:inline">{category.label} ({category.count})</span>
+                    <span className="sm:hidden">{category.label.split(' ')[0]} ({category.count})</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
