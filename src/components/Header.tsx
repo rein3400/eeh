@@ -36,12 +36,12 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-1 lg:space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={`px-2 lg:px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   isActive(item.path)
                     ? 'text-orange-600 bg-orange-50 border-b-2 border-orange-600'
                     : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
@@ -56,9 +56,10 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/contact"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-4 lg:px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md text-sm lg:text-base"
             >
-              Daftar Sekarang
+              <span className="hidden lg:inline">Daftar Sekarang</span>
+              <span className="lg:hidden">Daftar</span>
             </Link>
           </div>
 
