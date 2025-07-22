@@ -338,14 +338,14 @@ const Products = () => {
       <style>{keyframes}</style>
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#e87211]/10 via-white to-[#e87211]/20 pt-16 pb-20">
+        <section className="bg-gradient-to-br from-[#e87211]/10 via-white to-[#e87211]/20 pt-20 sm:pt-24 pb-12 sm:pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h1 className={`text-4xl md:text-6xl font-bold text-gray-900 mb-6 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+            <div className="text-center mb-12 sm:mb-16">
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                   style={isVisible ? animations.fadeInUp : {}}>
                 Program Persiapan Tes <span className="text-[#e87211]">TOEFL ITP®</span>
               </h1>
-              <p className={`text-xl text-gray-600 max-w-3xl mx-auto mb-8 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              <p className={`text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                  style={isVisible ? {...animations.fadeInUp, animationDelay: '0.2s'} : {}}>
                 Pilih program yang sesuai dengan kebutuhan dan target skor Anda. Dari preparation test hingga intensive course dengan TOEFL Master.
               </p>
