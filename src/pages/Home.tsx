@@ -358,31 +358,31 @@ const Home = () => {
               </div>
 
               {/* Emotional Value Proposition */}
-              <div className={`mb-12 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+              <div className={`mb-8 sm:mb-12 px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                    style={isVisible ? {...animations.fadeInUp, animationDelay: '0.5s'} : {}}>
                 <div className="max-w-5xl mx-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Heart className="h-8 w-8 text-white" />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-8">
+                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">Dipercaya ratusan siswa</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Dipercaya ratusan siswa</h3>
                       <p className="text-gray-600 text-sm">Lebih dari 700+ siswa telah meraih impian mereka</p>
                     </div>
                     
-                    <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Trophy className="h-8 w-8 text-white" />
+                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <Trophy className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">Metode Terbukti</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Metode Terbukti</h3>
                       <p className="text-gray-600 text-sm">Strategi pembelajaran yang telah teruji efektif</p>
                     </div>
                     
-                    <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Globe className="h-8 w-8 text-white" />
+                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <Globe className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">Peluang Global</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Peluang Global</h3>
                       <p className="text-gray-600 text-sm">Buka pintu kesempatan di universitas dunia</p>
                     </div>
                   </div>
