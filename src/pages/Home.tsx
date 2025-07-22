@@ -335,22 +335,22 @@ const Home = () => {
               </div>
               
               {/* Emotional Main Heading */}
-              <div className="mb-12">
-                <h1 className={`text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
+              <div className="mb-8 sm:mb-12">
+                <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
                     style={isVisible ? animations.fadeInUp : {}}>
-                  <span className="block mb-4">Saatnya Mewujudkan</span>
+                  <span className="block mb-2 sm:mb-4">Saatnya Mewujudkan</span>
                   <span className="block text-[#e87211] bg-gradient-to-r from-[#e87211] to-orange-400 bg-clip-text text-transparent">
                     Mimpi Terbesar Anda
                   </span>
                 </h1>
                 
                 {/* Emotional Subtitle */}
-                <div className={`max-w-4xl mx-auto ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                <div className={`max-w-4xl mx-auto px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                      style={isVisible ? {...animations.fadeInUp, animationDelay: '0.3s'} : {}}>
-                  <p className="text-xl sm:text-2xl text-gray-700 mb-6 leading-relaxed font-light">
+                  <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-4 sm:mb-6 leading-relaxed font-light">
                     Setiap langkah menuju <span className="text-[#e87211] font-semibold">studi luar negeri</span> dimulai dari sini.
                   </p>
-                  <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
                     Bergabunglah dengan ratusan siswa yang telah merasakan transformasi hidup melalui 
                     <span className="text-[#e87211] font-semibold"> persiapan TOEFL terbaik</span> bersama kami.
                   </p>
