@@ -352,19 +352,19 @@ const Products = () => {
             </div>
 
             {/* Stats Section */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mb-12 sm:mb-16">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 float-animation"
+                <div key={index} className="text-center bg-white rounded-lg p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 float-animation"
                      style={{ animationDelay: `${index * 0.5}s` }}>
-                  <div className="flex justify-center mb-4">
-                    <div className="bg-[#e87211]/10 p-3 rounded-full">
-                      {React.cloneElement(stat.icon, { className: "text-[#e87211]" })}
+                  <div className="flex justify-center mb-3 sm:mb-4">
+                    <div className="bg-[#e87211]/10 p-2 sm:p-3 rounded-full">
+                      {React.cloneElement(stat.icon, { className: "text-[#e87211] h-4 w-4 sm:h-5 sm:w-5" })}
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-[#e87211] mb-2">
+                  <div className="text-2xl sm:text-3xl font-bold text-[#e87211] mb-1 sm:mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-gray-600 font-medium">
+                  <div className="text-gray-600 font-medium text-sm sm:text-base">
                     {stat.label}
                   </div>
                 </div>
