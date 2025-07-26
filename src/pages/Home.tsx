@@ -300,6 +300,12 @@ const Home = () => {
 
   return (
     <>
+      <SEO 
+        title={seoConfig.home.title}
+        description={seoConfig.home.description}
+        keywords={seoConfig.home.keywords}
+        url={seoConfig.home.url}
+      />
       <style>{keyframes}</style>
       <div className="min-h-screen bg-white text-gray-900">
         {/* Hero Section - Enhanced with Emotional Wording and Elegant Design */}
