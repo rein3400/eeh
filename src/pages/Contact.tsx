@@ -70,6 +70,10 @@ const Contact = () => {
     window.open('https://api.whatsapp.com/send/?phone=6285225972995&text&type=phone_number&app_absent=0', '_blank');
   };
 
+  const handleOnlineRegistration = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfIjU2ZlkbdiH1mcfN2U6khlsRg-k3x-KrEkkPDGS_J2rZRsA/formResponse', '_blank');
+  };
+
   const contactMethods = [
     {
       icon: <MessageCircle className="h-8 w-8" />,
