@@ -52,20 +52,20 @@ const Header: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden xl:flex space-x-2 2xl:space-x-4">
+          {/* Simple Mobile/Desktop Navigation Toggle */}
+          {/* Desktop Navigation - Only show on large screens */}
+          <nav className="hidden lg:flex space-x-2 xl:space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`relative px-3 2xl:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
+                className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                   isActive(item.path)
                     ? 'text-orange-600 bg-orange-50'
                     : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
                 }`}
               >
                 {item.name}
-                {/* Active indicator */}
                 <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-orange-600 transition-all duration-300 ${
                   isActive(item.path) ? 'w-full' : 'group-hover:w-full'
                 }`}></span>
@@ -73,41 +73,14 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Tablet Navigation - Compact */}
-          <nav className="hidden lg:flex xl:hidden space-x-1">
-            {navItems.slice(0, 4).map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`px-2 py-2 rounded-md text-xs font-medium transition-colors duration-200 ${
-                  isActive(item.path)
-                    ? 'text-orange-600 bg-orange-50'
-                    : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
-                }`}
-              >
-                {item.name === 'TOEFL ITP' ? 'ITP' : item.name === 'TOEFL iBT' ? 'iBT' : item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA Button */}
-          <div className="hidden xl:flex items-center space-x-4">
+          {/* Desktop CTA Button */}
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/contact"
               className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md text-sm overflow-hidden group"
             >
               <span className="relative z-10">Daftar Sekarang</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-            </Link>
-          </div>
-
-          {/* Tablet CTA - Compact */}
-          <div className="hidden lg:flex xl:hidden items-center">
-            <Link
-              to="/contact"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-md font-medium transition-colors duration-200 text-xs"
-            >
-              Daftar
             </Link>
           </div>
 
