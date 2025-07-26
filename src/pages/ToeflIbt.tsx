@@ -285,6 +285,12 @@ const ToeflIbt = () => {
 
   return (
     <>
+      <SEO 
+        title={seoConfig.toeflIbt.title}
+        description={seoConfig.toeflIbt.description}
+        keywords={seoConfig.toeflIbt.keywords}
+        url={seoConfig.toeflIbt.url}
+      />
       <style>{keyframes}</style>
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
