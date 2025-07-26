@@ -16,36 +16,12 @@ function App() {
         <Header />
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <Home />
-              </Suspense>
-            } />
-            <Route path="/products" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <Products />
-              </Suspense>
-            } />
-            <Route path="/contact" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <Contact />
-              </Suspense>
-            } />
-            <Route path="/toefl-itp" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <ToeflItp />
-              </Suspense>
-            } />
-            <Route path="/toefl-ibt" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <ToeflIbt />
-              </Suspense>
-            } />
-            <Route path="/blog" element={
-              <Suspense fallback={<PageSkeleton />}>
-                <Blog />
-              </Suspense>
-            } />
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/toefl-itp" element={<ToeflItp />} />
+            <Route path="/toefl-ibt" element={<ToeflIbt />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
       </div>
