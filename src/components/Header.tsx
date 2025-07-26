@@ -53,18 +53,39 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-1 lg:space-x-4">
+          <nav className="hidden lg:flex space-x-1 xl:space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-2 lg:px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                className={`relative px-3 xl:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                   isActive(item.path)
-                    ? 'text-orange-600 bg-orange-50 border-b-2 border-orange-600'
+                    ? 'text-orange-600 bg-orange-50'
                     : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
                 }`}
               >
                 {item.name}
+                {/* Active indicator */}
+                <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-orange-600 transition-all duration-300 ${
+                  isActive(item.path) ? 'w-full' : 'group-hover:w-full'
+                }`}></span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* Tablet Navigation - Compact */}
+          <nav className="hidden md:flex lg:hidden space-x-1">
+            {navItems.slice(0, 4).map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`px-2 py-2 rounded-md text-xs font-medium transition-colors duration-200 ${
+                  isActive(item.path)
+                    ? 'text-orange-600 bg-orange-50'
+                    : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
+                }`}
+              >
+                {item.name === 'TOEFL ITP' ? 'ITP' : item.name === 'TOEFL iBT' ? 'iBT' : item.name}
               </Link>
             ))}
           </nav>
