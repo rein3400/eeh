@@ -335,6 +335,8 @@ const Products = () => {
 
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
+      case 'RESMI ETS': return 'bg-red-600 text-white';
+      case 'iBT OFFICIAL': return 'bg-blue-600 text-white';
       case 'SIMULASI': return 'bg-blue-500 text-white';
       case 'INTENSIVE': return 'bg-orange-500 text-white';
       case 'POPULER': return 'bg-[#e87211] text-white';
