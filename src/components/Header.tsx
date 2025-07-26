@@ -114,7 +114,7 @@ const Header: React.FC = () => {
           {/* Enhanced Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden inline-flex items-center justify-center p-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 group"
+            className="lg:hidden inline-flex items-center justify-center p-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 group"
             aria-expanded={isMenuOpen}
             aria-label="Toggle navigation menu"
           >
