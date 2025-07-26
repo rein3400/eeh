@@ -133,36 +133,55 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                    isActive(item.path)
-                      ? 'text-orange-600 bg-orange-50'
-                      : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="pt-4 pb-2">
-                <Link
-                  to="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-                >
-                  Daftar Sekarang
-                </Link>
-              </div>
+        {/* Enhanced Mobile Navigation */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        } overflow-hidden`}>
+          <div className="px-4 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-100">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-4 py-4 rounded-xl text-base font-medium transition-all duration-300 min-h-[48px] flex items-center transform ${
+                  isActive(item.path)
+                    ? 'text-orange-600 bg-orange-50 shadow-sm scale-95'
+                    : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50 hover:scale-95'
+                }`}
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                  animation: isMenuOpen ? 'slideInDown 0.3s ease-out forwards' : 'none'
+                }}
+              >
+                <div className="flex items-center space-x-3">
+                  <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    isActive(item.path) ? 'bg-orange-600' : 'bg-gray-300'
+                  }`}></div>
+                  <span>{item.name}</span>
+                </div>
+                {isActive(item.path) && (
+                  <div className="ml-auto">
+                    <div className="w-2 h-2 bg-orange-600 rounded-full animate-pulse"></div>
+                  </div>
+                )}
+              </Link>
+            ))}
+            
+            {/* Mobile CTA */}
+            <div className="pt-4 border-t border-gray-100 mt-4">
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-center w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-95 min-h-[48px]"
+              >
+                <span>Daftar Sekarang</span>
+                <svg className="ml-2 w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
