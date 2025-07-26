@@ -324,6 +324,7 @@ const Products = () => {
 
   const categories = [
     { id: 'all', label: 'Semua Program', count: products.length },
+    { id: 'test-only', label: 'Test Only', count: products.filter(p => p.category === 'test-only').length },
     { id: 'preparation', label: 'Preparation Test', count: products.filter(p => p.category === 'preparation').length },
     { id: 'course-test', label: 'Course + Test', count: products.filter(p => p.category === 'course-test').length }
   ];
