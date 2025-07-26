@@ -2,12 +2,12 @@ import React, { Suspense, lazy } from 'react';
 import { PageSkeleton } from './components/Skeleton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-const Home = lazy(() => import('./pages/Home'));
-const Products = lazy(() => import('./pages/Products'));
-const Contact = lazy(() => import('./pages/Contact'));
-const ToeflItp = lazy(() => import('./pages/ToeflItp'));
-const ToeflIbt = lazy(() => import('./pages/ToeflIbt'));
-const Blog = lazy(() => import('./pages/Blog'));
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Contact from './pages/Contact';
+import ToeflItp from './pages/ToeflItp';
+import ToeflIbt from './pages/ToeflIbt';
+import Blog from './pages/Blog';
 
 function App() {
   return (
