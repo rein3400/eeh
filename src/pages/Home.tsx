@@ -421,19 +421,19 @@ const Home = () => {
                   </div>
                 </div>
                 
-                {/* Trust indicators */}
-                <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm text-gray-500">
-                  <div className="flex items-center">
+                {/* Enhanced Trust indicators */}
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-sm text-gray-500">
+                  <div className="flex items-center bg-white/50 rounded-full px-4 py-2 border border-orange-100">
                     <Shield className="h-4 w-4 mr-2 text-[#e87211]" />
-                    <span>Sertifikat Resmi ETS</span>
+                    <span className="font-medium">Sertifikat Resmi ETS</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center bg-white/50 rounded-full px-4 py-2 border border-orange-100">
                     <Star className="h-4 w-4 mr-2 text-[#e87211]" />
-                    <span>Rating 4.9/5</span>
+                    <span className="font-medium">Rating 4.9/5</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center bg-white/50 rounded-full px-4 py-2 border border-orange-100">
                     <Users className="h-4 w-4 mr-2 text-[#e87211]" />
-                    <span>700+ Alumni Sukses</span>
+                    <span className="font-medium">700+ Alumni Sukses</span>
                   </div>
                 </div>
               </div>
