@@ -53,12 +53,12 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-1 xl:space-x-4">
+          <nav className="hidden xl:flex space-x-2 2xl:space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`relative px-3 xl:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
+                className={`relative px-3 2xl:px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                   isActive(item.path)
                     ? 'text-orange-600 bg-orange-50'
                     : 'text-gray-700 hover:text-orange-600 hover:bg-orange-50'
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Tablet Navigation - Compact */}
-          <nav className="hidden md:flex lg:hidden space-x-1">
+          <nav className="hidden lg:flex xl:hidden space-x-1">
             {navItems.slice(0, 4).map((item) => (
               <Link
                 key={item.name}
