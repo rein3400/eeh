@@ -134,7 +134,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Enhanced Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
+        <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="px-4 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-100">
