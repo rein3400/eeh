@@ -361,29 +361,29 @@ const Home = () => {
               <div className={`mb-8 sm:mb-12 px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                    style={isVisible ? {...animations.fadeInUp, animationDelay: '0.5s'} : {}}>
                 <div className="max-w-5xl mx-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-8">
-                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                        <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                    <div className="group text-center p-6 sm:p-8 bg-white/70 backdrop-blur-sm rounded-3xl border border-orange-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 animate-float-gentle">
+                        <Heart className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Dipercaya ratusan siswa</h3>
-                      <p className="text-gray-600 text-sm">Lebih dari 700+ siswa telah meraih impian mereka</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Dipercaya ratusan siswa</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">Lebih dari 700+ siswa telah meraih impian mereka</p>
                     </div>
                     
-                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                        <Trophy className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                    <div className="group text-center p-6 sm:p-8 bg-white/70 backdrop-blur-sm rounded-3xl border border-orange-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" style={{animationDelay: '0.1s'}}>
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 animate-float-gentle">
+                        <Trophy className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Metode Terbukti</h3>
-                      <p className="text-gray-600 text-sm">Strategi pembelajaran yang telah teruji efektif</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Metode Terbukti</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">Strategi pembelajaran yang telah teruji efektif</p>
                     </div>
                     
-                    <div className="text-center p-4 sm:p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-orange-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                        <Globe className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                    <div className="group text-center p-6 sm:p-8 bg-white/70 backdrop-blur-sm rounded-3xl border border-orange-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer sm:col-span-2 md:col-span-1" style={{animationDelay: '0.2s'}}>
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#e87211] to-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 animate-float-gentle">
+                        <Globe className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Peluang Global</h3>
-                      <p className="text-gray-600 text-sm">Buka pintu kesempatan di universitas dunia</p>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Peluang Global</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">Buka pintu kesempatan di universitas dunia</p>
                     </div>
                   </div>
                 </div>
