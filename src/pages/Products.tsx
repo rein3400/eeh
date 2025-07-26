@@ -134,6 +134,48 @@ const Products = () => {
   const products: Product[] = [
     {
       id: 1,
+      title: "Test TOEFL ITP",
+      description: "Tes TOEFL ITP® resmi dari ETS Amerika Serikat dengan sertifikat yang diakui institusi pendidikan dan pemerintah.",
+      features: [
+        "Provider: ETS Amerika Serikat",
+        "Remote Proctoring System",
+        "Unofficial Score Report (PDF) - langsung download",
+        "Berkas fisik dikirim 14-20 hari kerja",
+        "Masa berlaku 2 tahun",
+        "Untuk LPDP, BUMN, CPNS, Beasiswa"
+      ],
+      badge: "RESMI ETS",
+      category: "test-only",
+      duration: "115 menit",
+      rating: 4.9,
+      students: 2500,
+      tags: ["Resmi ETS", "Sertifikat Resmi", "Test Only"],
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
+      highlight: "Tes TOEFL ITP® resmi dengan sertifikat yang diakui secara global"
+    },
+    {
+      id: 2,
+      title: "Test TOEFL iBT",
+      description: "Tes TOEFL iBT® resmi dari ETS Amerika Serikat dengan format internet-based testing yang diakui universitas internasional.",
+      features: [
+        "Provider: ETS Amerika Serikat",
+        "Internet-based Testing (iBT)",
+        "Speaking & Writing Section included",
+        "Hasil diterima universitas luar negeri",
+        "Berlaku untuk visa dan imigrasi",
+        "Score valid 2 tahun"
+      ],
+      badge: "iBT OFFICIAL",
+      category: "test-only",
+      duration: "3 jam",
+      rating: 4.9,
+      students: 1800,
+      tags: ["iBT Official", "Speaking & Writing", "Global Recognition"],
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
+      highlight: "Tes TOEFL iBT® format lengkap dengan Speaking dan Writing"
+    },
+    {
+      id: 3,
       title: "TOEFL Preparation Test",
       description: "Tes Preparation secara online untuk mengukur sampai berapa skor tes sebelum mengambil real test untuk TOEFL ITP®",
       features: [
@@ -153,7 +195,7 @@ const Products = () => {
       highlight: "Ukur kemampuan Anda sebelum tes sesungguhnya"
     },
     {
-      id: 2,
+      id: 4,
       title: "4 Hours One Day Before Test",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
@@ -174,7 +216,7 @@ const Products = () => {
       highlight: "Persiapan intensif sehari sebelum tes"
     },
     {
-      id: 3,
+      id: 5,
       title: "7 Days Short Course",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
@@ -195,7 +237,7 @@ const Products = () => {
       highlight: "Program singkat dengan hasil maksimal"
     },
     {
-      id: 4,
+      id: 6,
       title: "10 Meeting Intensive",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
@@ -216,7 +258,7 @@ const Products = () => {
       highlight: "Pembelajaran personal dengan jadwal fleksibel"
     },
     {
-      id: 5,
+      id: 7,
       title: "15 Meeting Intensive",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
@@ -237,7 +279,7 @@ const Products = () => {
       highlight: "Program lanjutan dengan garansi skor"
     },
     {
-      id: 6,
+      id: 8,
       title: "20 Meeting Intensive",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
@@ -258,7 +300,7 @@ const Products = () => {
       highlight: "Program komprehensif untuk hasil terbaik"
     },
     {
-      id: 7,
+      id: 9,
       title: "30 Meeting Intensive",
       description: "Program kursus singkat bersama dengan TOEFL Master. Kursus telah include biaya tes TOEFL ITP® Resmi ETS dan Preparation",
       features: [
