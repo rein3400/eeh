@@ -91,7 +91,7 @@ const Header: React.FC = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             <Link
               to="/contact"
               className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md text-sm overflow-hidden group"
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Tablet CTA - Compact */}
-          <div className="hidden md:flex lg:hidden items-center">
+          <div className="hidden lg:flex xl:hidden items-center">
             <Link
               to="/contact"
               className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-md font-medium transition-colors duration-200 text-xs"
