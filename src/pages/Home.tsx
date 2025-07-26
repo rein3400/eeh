@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
+import { seoConfig } from '../utils/seoConfig';
 import {
   BookOpen,
   Target,
