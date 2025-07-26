@@ -91,13 +91,23 @@ const Header: React.FC = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/contact"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 lg:px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md text-sm lg:text-base"
+              className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md text-sm overflow-hidden group"
             >
-              <span className="hidden lg:inline">Daftar Sekarang</span>
-              <span className="lg:hidden">Daftar</span>
+              <span className="relative z-10">Daftar Sekarang</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </Link>
+          </div>
+
+          {/* Tablet CTA - Compact */}
+          <div className="hidden md:flex lg:hidden items-center">
+            <Link
+              to="/contact"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-md font-medium transition-colors duration-200 text-xs"
+            >
+              Daftar
             </Link>
           </div>
 
