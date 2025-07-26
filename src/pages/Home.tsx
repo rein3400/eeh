@@ -400,17 +400,22 @@ const Home = () => {
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
                     <button
                       onClick={handleOnlineRegistration}
-                      className="group relative bg-gradient-to-r from-[#e87211] to-orange-400 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl hover:from-[#d4640e] hover:to-orange-500 transition-all duration-500 font-bold text-base sm:text-lg shadow-2xl hover:shadow-orange-200 transform hover:scale-105 w-full sm:w-auto"
+                      className="group relative bg-gradient-to-r from-[#e87211] to-orange-400 text-white px-8 sm:px-12 py-5 sm:py-6 rounded-2xl hover:from-[#d4640e] hover:to-orange-500 transition-all duration-500 font-bold text-base sm:text-lg shadow-2xl hover:shadow-orange-200 transform hover:scale-105 w-full sm:w-auto min-h-[60px] active:scale-95"
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         Mulai Perjalanan Anda
-                        <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform duration-300" />
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-[#e87211] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      {/* Shimmer effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 animate-shimmer bg-gradient-to-r from-transparent via-white to-transparent"></div>
                     </button>
                     
                     <div className="text-center sm:text-left">
-                      <p className="text-sm text-gray-500 mb-1">Konsultasi gratis tersedia</p>
+                      <p className="text-sm text-gray-500 mb-1 flex items-center justify-center sm:justify-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse-soft"></div>
+                        Konsultasi gratis tersedia
+                      </p>
                       <p className="text-xs text-gray-400">Tanpa komitmen</p>
                     </div>
                   </div>
