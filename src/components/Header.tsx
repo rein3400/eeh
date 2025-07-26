@@ -47,8 +47,6 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2">
             <img src="/logo.jpg" alt="EEH Logo" className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg" />
             <div className="hidden sm:block">
-              <div className="text-sm font-bold text-gray-800">Express</div>
-              <div className="text-xs text-gray-600">English Hub</div>
             </div>
           </Link>
 
