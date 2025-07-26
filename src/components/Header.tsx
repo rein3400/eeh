@@ -111,22 +111,25 @@ const Header: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Enhanced Mobile menu button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-orange-600 hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
-            aria-expanded="false"
+            className="md:hidden inline-flex items-center justify-center p-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 group"
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle navigation menu"
           >
-            <span className="sr-only">Open main menu</span>
-            {!isMenuOpen ? (
-              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            ) : (
-              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            )}
+            <div className="relative w-6 h-6">
+              {/* Hamburger animation */}
+              <span className={`absolute left-0 block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
+                isMenuOpen ? 'rotate-45 top-3' : 'top-1'
+              }`}></span>
+              <span className={`absolute left-0 top-3 block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
+                isMenuOpen ? 'opacity-0' : 'opacity-100'
+              }`}></span>
+              <span className={`absolute left-0 block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out ${
+                isMenuOpen ? '-rotate-45 top-3' : 'top-5'
+              }`}></span>
+            </div>
           </button>
         </div>
 
