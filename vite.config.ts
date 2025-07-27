@@ -9,8 +9,8 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': 'http://localhost:8000',
-      '/articles': 'http://localhost:8000',
+      '/api': 'http://localhost:8080',
+      '/articles': 'http://localhost:8080',
     },
   },
   build: {
