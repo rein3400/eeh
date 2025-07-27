@@ -8,6 +8,28 @@ interface SEOProps {
   url?: string;
   type?: string;
   author?: string;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  organization?: {
+    name?: string;
+    logo?: string;
+    telephone?: string;
+    email?: string;
+    address?: any;
+  };
+  breadcrumbs?: Array<{
+    name: string;
+    url: string;
+  }>;
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
 }
 
 const SEO: React.FC<SEOProps> = ({
