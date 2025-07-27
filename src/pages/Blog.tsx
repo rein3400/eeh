@@ -361,7 +361,7 @@ const Blog: React.FC = () => {
               <div className="flex justify-center items-center space-x-8 text-orange-200">
                 <div className="flex items-center">
                   <BookOpen className="h-4 w-4 mr-2" />
-                  <span className="text-sm">{blogPosts.length}+ Artikel</span>
+                  <span className="text-sm">{allBlogPosts.length}+ Artikel</span>
                 </div>
                 <div className="flex items-center">
                   <Users className="h-4 w-4 mr-2" />
