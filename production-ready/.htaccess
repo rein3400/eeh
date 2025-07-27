@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Handle articles directory
+RewriteCond %{REQUEST_URI} ^/articles/(.+\.html)$
+RewriteRule ^articles/(.+\.html)$ /articles/%1 [L]
+
+# Handle API requests
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ /api/$1 [L]
+
+# Handle React routing - redirect all other requests to index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/articles/
+RewriteRule . /index.html [L]
