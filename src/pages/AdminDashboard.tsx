@@ -47,13 +47,6 @@ const AdminDashboard = () => {
     avatar: '/logo.jpg'
   });
 
-  // Mock data - removed unused dashboard stats and users data
-  const [user] = useState({
-    name: 'Admin EEH',
-    email: 'admin@expressenglishhub.com',
-    avatar: '/logo.jpg'
-  });
-
   const sidebarItems = [
     { id: 'articles', label: 'Articles', icon: FileText },
     { id: 'generator', label: 'Blog Generator', icon: Plus },
