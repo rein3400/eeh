@@ -58,12 +58,8 @@ const AdminDashboard = () => {
   ]);
 
   const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'posts', label: 'Posts', icon: FileText },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-    { id: 'messages', label: 'Messages', icon: MessageCircle },
+    { id: 'articles', label: 'Articles', icon: FileText },
+    { id: 'generator', label: 'Blog Generator', icon: Plus },
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
