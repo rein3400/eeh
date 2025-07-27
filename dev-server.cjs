@@ -14,7 +14,6 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('.'));
 
 // In-memory session storage for development
 const sessions = new Map();
