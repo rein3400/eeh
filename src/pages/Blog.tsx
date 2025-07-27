@@ -297,7 +297,7 @@ const Blog: React.FC = () => {
   const currentPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
   // Featured posts (top 3 most viewed)
-  const featuredPosts = [...blogPosts]
+  const featuredPosts = [...allBlogPosts]
     .sort((a, b) => b.views - a.views)
     .slice(0, 3);
 
