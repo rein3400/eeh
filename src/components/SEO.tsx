@@ -39,7 +39,11 @@ const SEO: React.FC<SEOProps> = ({
   image = '/logo.jpg',
   url = typeof window !== 'undefined' ? window.location.href : '',
   type = 'website',
-  author = 'Express English Hub'
+  author = 'Express English Hub',
+  article,
+  organization,
+  breadcrumbs,
+  faq
 }) => {
   React.useEffect(() => {
     // Update document title
