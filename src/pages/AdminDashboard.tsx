@@ -47,22 +47,12 @@ const AdminDashboard = () => {
     avatar: '/logo.jpg'
   });
 
-  // Mock data
-  const [dashboardStats] = useState({
-    totalUsers: 1247,
-    totalCourses: 15,
-    totalRevenue: 'Rp 185,750,000',
-    activeStudents: 892,
-    completionRate: '87%',
-    avgScore: 485
+  // Mock data - removed unused dashboard stats and users data
+  const [user] = useState({
+    name: 'Admin EEH',
+    email: 'admin@expressenglishhub.com',
+    avatar: '/logo.jpg'
   });
-
-  const [recentUsers] = useState([
-    { id: 1, name: 'John Doe', email: 'john@email.com', course: 'TOEFL ITP', status: 'Active', joinDate: '2024-01-15' },
-    { id: 2, name: 'Jane Smith', email: 'jane@email.com', course: 'TOEFL iBT', status: 'Active', joinDate: '2024-01-14' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@email.com', course: 'TOEFL ITP', status: 'Inactive', joinDate: '2024-01-13' },
-    { id: 4, name: 'Alice Brown', email: 'alice@email.com', course: 'TOEFL iBT', status: 'Active', joinDate: '2024-01-12' }
-  ]);
 
   const sidebarItems = [
     { id: 'articles', label: 'Articles', icon: FileText },
