@@ -547,10 +547,10 @@ const Home = () => {
                     <CheckCircle className="h-6 w-6 text-[#e87211] mt-1" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-[#e87211] mb-4">
-                    Strategi skor tinggi
+                    Strategi Skor Tinggi TOEFL
                   </h3>
                   <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-                    TOEFL pribadi
+                    Personal coaching untuk target skor optimal
                   </h4>
                   <div className="space-y-3">
                     <div className="flex items-center">
