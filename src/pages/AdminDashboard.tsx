@@ -105,6 +105,8 @@ const AdminDashboard = () => {
   const sidebarItems = [
     { id: 'articles', label: 'Articles', icon: FileText },
     { id: 'generator', label: 'Blog Generator', icon: Plus },
+    { id: 'seo', label: 'SEO Dashboard', icon: TrendingUp },
+    { id: 'plugins', label: 'Plugin Manager', icon: Upload },
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
