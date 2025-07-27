@@ -33,7 +33,14 @@ import {
 import SEO from '../components/SEO';
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('articles');
+  const [articles, setArticles] = useState([]);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatorForm, setGeneratorForm] = useState({
+    keywords: '',
+    count: 1,
+    language: 'id'
+  });
   const [user] = useState({
     name: 'Admin EEH',
     email: 'admin@expressenglishhub.com',
