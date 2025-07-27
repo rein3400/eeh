@@ -428,8 +428,12 @@ const AdminDashboard = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <Bell className="h-4 w-4" />
-                <span>Howdy, {user.name}</span>
-                <button className="hover:text-red-300">
+                <span>Howdy, {userInfo?.username || user.name}</span>
+                <button 
+                  onClick={handleLogout}
+                  className="hover:text-red-300 flex items-center"
+                  title="Logout"
+                >
                   <LogOut className="h-4 w-4" />
                 </button>
               </div>
