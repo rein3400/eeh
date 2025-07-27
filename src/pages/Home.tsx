@@ -495,10 +495,10 @@ const Home = () => {
                     <CheckCircle className="h-6 w-6 text-[#e87211] mt-1" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-[#e87211] mb-4">
-                    Kurikulum TOEFL terlengkap,
+                    Kurikulum TOEFL Terlengkap
                   </h3>
                   <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-                    dari dasar, strategi, hingga praktik.
+                    Dari dasar, strategi, hingga praktik intensif
                   </h4>
                   <div className="space-y-3">
                     <div className="flex items-center">
