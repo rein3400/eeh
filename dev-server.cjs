@@ -156,7 +156,7 @@ app.get('/api/articles.php', (req, res) => {
   }
 });
 
-// Generate article endpoint (placeholder)
+// Generate article endpoint (Enhanced SEO version)
 app.post('/api/generate-article.php', checkAuth, async (req, res) => {
   const { keywords, count = 1, language = 'id' } = req.body;
   
@@ -165,7 +165,6 @@ app.post('/api/generate-article.php', checkAuth, async (req, res) => {
   }
   
   try {
-    // For now, create a simple placeholder article
     const articlesDir = path.join(__dirname, 'articles');
     if (!fs.existsSync(articlesDir)) {
       fs.mkdirSync(articlesDir, { recursive: true });
@@ -174,54 +173,20 @@ app.post('/api/generate-article.php', checkAuth, async (req, res) => {
     const generatedArticles = [];
     
     for (let i = 0; i < count; i++) {
-      const title = `Article about ${keywords} - ${i + 1}`;
-      const filename = `${keywords.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}_${i + 1}.html`;
+      const keywordArray = keywords.split(',').map(k => k.trim());
+      const primaryKeyword = keywordArray[0];
+      const title = generateSEOTitle(primaryKeyword, language);
+      const metaDescription = generateMetaDescription(title, primaryKeyword, language);
+      const filename = `${sanitizeFilename(title)}_${Date.now()}_${i + 1}.html`;
       
-      const htmlContent = `<!DOCTYPE html>
-<html lang="${language === 'id' ? 'id' : 'en'}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <meta name="description" content="Professional article about ${keywords}">
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            line-height: 1.6; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 20px; 
-        }
-        h1, h2, h3 { color: #e97311; }
-        .meta { color: #666; font-size: 14px; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <article>
-        <h1>${title}</h1>
-        <div class="meta">
-            <p>Published: ${new Date().toLocaleDateString()}</p>
-            <p>Keywords: ${keywords}</p>
-        </div>
-        <h2>Introduction</h2>
-        <p>This is a professionally generated article about ${keywords}. This is a placeholder content that demonstrates the article generation system.</p>
-        
-        <h2>Main Content</h2>
-        <p>Here we would have high-quality, SEO-optimized content related to ${keywords}. The article would include relevant information, structured headings, and comprehensive coverage of the topic.</p>
-        
-        <h3>Key Points</h3>
-        <ul>
-            <li>Comprehensive coverage of ${keywords}</li>
-            <li>SEO-optimized structure</li>
-            <li>Professional formatting</li>
-            <li>Educational content</li>
-        </ul>
-        
-        <h2>Conclusion</h2>
-        <p>This article provides valuable information about ${keywords} in a structured, professional format suitable for search engine optimization.</p>
-    </article>
-</body>
-</html>`;
+      const htmlContent = generateSEOOptimizedArticle({
+        title,
+        metaDescription,
+        keywords: keywordArray,
+        primaryKeyword,
+        language,
+        filename
+      });
       
       const filePath = path.join(articlesDir, filename);
       fs.writeFileSync(filePath, htmlContent);
@@ -247,6 +212,291 @@ app.post('/api/generate-article.php', checkAuth, async (req, res) => {
     });
   }
 });
+
+// SEO Title Generator
+function generateSEOTitle(keyword, language) {
+  const templates = {
+    id: [
+      `Panduan Lengkap ${keyword} untuk Pemula 2025`,
+      `${keyword}: Tips dan Strategi Terbukti`,
+      `Cara Sukses ${keyword} - Panduan Expert`,
+      `${keyword} Indonesia: Tutorial Komprehensif`,
+      `Master ${keyword} dengan 10 Langkah Mudah`,
+      `Rahasia ${keyword} yang Tidak Diketahui Banyak Orang`,
+      `${keyword} Terbaik: Review dan Rekomendasi`,
+      `Belajar ${keyword} dari Nol sampai Mahir`,
+      `${keyword} 2025: Update Terbaru dan Trend`,
+      `Solusi ${keyword} Paling Efektif dan Praktis`
+    ],
+    en: [
+      `Complete ${keyword} Guide for Beginners 2025`,
+      `${keyword}: Proven Tips and Strategies`,
+      `How to Master ${keyword} - Expert Guide`,
+      `${keyword} Tutorial: Comprehensive Guide`,
+      `Master ${keyword} in 10 Easy Steps`,
+      `${keyword} Secrets Most People Don't Know`,
+      `Best ${keyword}: Reviews and Recommendations`,
+      `Learn ${keyword} from Zero to Expert`,
+      `${keyword} 2025: Latest Updates and Trends`,
+      `Most Effective ${keyword} Solutions`
+    ]
+  };
+  
+  const titleTemplates = templates[language] || templates.en;
+  return titleTemplates[Math.floor(Math.random() * titleTemplates.length)];
+}
+
+// Meta Description Generator
+function generateMetaDescription(title, keyword, language) {
+  const descriptions = {
+    id: [
+      `Pelajari ${keyword} dengan panduan lengkap dan mudah dipahami. Tips praktis, strategi terbukti, dan contoh nyata untuk hasil maksimal. ✓ Update 2025`,
+      `Ingin menguasai ${keyword}? Temukan tutorial step-by-step, tips expert, dan strategi terbaik di sini. Gratis dan mudah dipraktikkan!`,
+      `Panduan ${keyword} terlengkap untuk pemula hingga advanced. Dapatkan tips, trik, dan strategi dari para ahli. Mulai sekarang juga!`,
+      `Belajar ${keyword} dengan metode terbukti efektif. Tutorial komprehensif, tips praktis, dan panduan detail untuk sukses Anda.`
+    ],
+    en: [
+      `Learn ${keyword} with complete and easy-to-understand guide. Practical tips, proven strategies, and real examples for maximum results. ✓ 2025 Update`,
+      `Want to master ${keyword}? Find step-by-step tutorials, expert tips, and best strategies here. Free and easy to practice!`,
+      `Complete ${keyword} guide for beginners to advanced. Get tips, tricks, and strategies from experts. Start now!`,
+      `Learn ${keyword} with proven effective methods. Comprehensive tutorial, practical tips, and detailed guide for your success.`
+    ]
+  };
+  
+  const descTemplates = descriptions[language] || descriptions.en;
+  return descTemplates[Math.floor(Math.random() * descTemplates.length)];
+}
+
+// SEO-Optimized Article Generator
+function generateSEOOptimizedArticle({ title, metaDescription, keywords, primaryKeyword, language, filename }) {
+  const currentDate = new Date().toISOString();
+  const readableDate = new Date().toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US');
+  
+  const content = language === 'id' ? generateIndonesianContent(title, primaryKeyword, keywords) : generateEnglishContent(title, primaryKeyword, keywords);
+  
+  return `<!DOCTYPE html>
+<html lang="${language === 'id' ? 'id' : 'en'}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <meta name="description" content="${metaDescription}">
+    <meta name="keywords" content="${keywords.join(', ')}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Express English Hub">
+    <meta name="language" content="${language}">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="general">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${metaDescription}">
+    <meta property="og:image" content="/logo.jpg">
+    <meta property="og:url" content="/articles/${filename}">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Express English Hub">
+    <meta property="og:locale" content="${language === 'id' ? 'id_ID' : 'en_US'}">
+    
+    <!-- Article Meta Tags -->
+    <meta property="article:published_time" content="${currentDate}">
+    <meta property="article:modified_time" content="${currentDate}">
+    <meta property="article:author" content="Express English Hub">
+    <meta property="article:section" content="TOEFL Tips">
+    ${keywords.map(tag => `<meta property="article:tag" content="${tag}">`).join('\n    ')}
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${title}">
+    <meta name="twitter:description" content="${metaDescription}">
+    <meta name="twitter:image" content="/logo.jpg">
+    <meta name="twitter:site" content="@ExpressEnglishHub">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "${title}",
+      "description": "${metaDescription}",
+      "image": "/logo.jpg",
+      "datePublished": "${currentDate}",
+      "dateModified": "${currentDate}",
+      "author": {
+        "@type": "Organization",
+        "name": "Express English Hub",
+        "url": "https://expressenglishhub.com"
+      },
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "Express English Hub",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "/logo.jpg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/articles/${filename}"
+      },
+      "keywords": "${keywords.join(', ')}",
+      "articleSection": "TOEFL Education",
+      "wordCount": 1200,
+      "inLanguage": "${language}",
+      "about": {
+        "@type": "Thing",
+        "name": "${primaryKeyword}"
+      }
+    }
+    </script>
+    
+    <!-- CSS Styles for SEO and Readability -->
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px;
+            color: #333;
+            background: #fff;
+        }
+        .header {
+            border-bottom: 3px solid #e97311;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 { 
+            color: #e97311;
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        h2 { 
+            color: #d4640e;
+            font-size: 1.6em;
+            font-weight: 600;
+            margin: 35px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #e97311;
+        }
+        h3 { 
+            color: #b8540b;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+        .meta { 
+            color: #666; 
+            font-size: 14px; 
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .toc {
+            background: #f0f7ff;
+            border: 1px solid #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .toc h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .toc ul {
+            padding-left: 20px;
+        }
+        .toc a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .highlight-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .tip {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .tip::before {
+            content: "💡 ";
+            font-size: 18px;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #e97311;
+            font-weight: 600;
+        }
+        .conclusion {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        .cta {
+            background: linear-gradient(135deg, #e97311 0%, #ff9800 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        .article-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e97311;
+            text-align: center;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <div class="header">
+            <h1>${title}</h1>
+            <div class="meta">
+                <p><strong>${language === 'id' ? 'Dipublikasikan' : 'Published'}:</strong> ${readableDate} | 
+                <strong>${language === 'id' ? 'Penulis' : 'Author'}:</strong> Express English Hub | 
+                <strong>${language === 'id' ? 'Waktu Baca' : 'Reading Time'}:</strong> ${language === 'id' ? '8 menit' : '8 minutes'}</p>
+                <p><strong>${language === 'id' ? 'Kata Kunci' : 'Keywords'}:</strong> ${keywords.join(', ')}</p>
+            </div>
+        </div>
+        
+        ${content}
+        
+        <div class="article-footer">
+            <p><strong>Express English Hub</strong> - ${language === 'id' ? 'Platform TOEFL Terpercaya di Indonesia' : 'Trusted TOEFL Platform in Indonesia'}</p>
+            <p>${language === 'id' ? 'Bergabung dengan ribuan siswa yang telah mencapai skor TOEFL impian mereka!' : 'Join thousands of students who have achieved their dream TOEFL scores!'}</p>
+        </div>
+    </article>
+</body>
+</html>`;
+}
 
 // Delete article endpoint
 app.post('/api/delete-article.php', checkAuth, (req, res) => {
