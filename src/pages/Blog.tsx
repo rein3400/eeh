@@ -517,6 +517,24 @@ const Blog: React.FC = () => {
                       Hapus Filter
                     </button>
                   )}
+                  
+                  <button
+                    onClick={loadDynamicArticles}
+                    disabled={loading}
+                    className="bg-[#e97311] text-white px-4 py-2 rounded-lg hover:bg-[#d4640e] transition-colors font-medium flex items-center"
+                  >
+                    {loading ? (
+                      <>
+                        <RefreshCw className="animate-spin h-4 w-4 mr-2" />
+                        Loading...
+                      </>
+                    ) : (
+                      <>
+                        <RefreshCw className="h-4 w-4 mr-2" />
+                        Refresh
+                      </>
+                    )}
+                  </button>
                 </div>
 
                 {/* Blog Posts Grid */}
