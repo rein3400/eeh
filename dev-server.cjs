@@ -286,6 +286,9 @@ app.get('/articles/:filename', (req, res) => {
   res.sendFile(filePath);
 });
 
+// Serve static files (after API routes)
+app.use(express.static('.'));
+
 app.listen(PORT, () => {
   console.log(`Development API server running on http://localhost:${PORT}`);
 });
