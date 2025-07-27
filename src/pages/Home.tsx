@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import SemanticSEO from '../components/SemanticSEO';
 import { seoConfig } from '../utils/seoConfig';
+import { trackTOEFLEvent } from '../utils/analytics';
 import {
   BookOpen,
   Target,
