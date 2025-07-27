@@ -290,6 +290,7 @@ const Home = () => {
   ];
 
   const handleOnlineRegistration = () => {
+    trackTOEFLEvent.contactForm('registration');
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSfIjU2ZlkbdiH1mcfN2U6khlsRg-k3x-KrEkkPDGS_J2rZRsA/formResponse', '_blank');
   };
 
