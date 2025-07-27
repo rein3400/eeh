@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +13,7 @@ app.use(cors({
   origin: 'http://localhost:5173'
 }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.static('.'));
 
 // In-memory session storage for development
