@@ -109,14 +109,20 @@ const AdminDashboard = () => {
   ];
 
   // Load articles from backend
-  useEffect(() => {
-    loadArticles();
-  }, []);
-
   const loadArticles = async () => {
     try {
-      const response = await fetch('/api/articles.php');
+      const response = await fetch('/api/articles.php', {
+        credentials: 'include'
+      });
       const data = await response.json();
+      
+      if (response.status === 401) {
+        // Session expired
+        setIsAuthenticated(false);
+        localStorage.removeItem('admin_session');
+        return;
+      }
+      
       setArticles(data.articles || []);
     } catch (error) {
       console.error('Error loading articles:', error);
@@ -136,8 +142,17 @@ const AdminDashboard = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(generatorForm)
       });
+
+      if (response.status === 401) {
+        // Session expired
+        setIsAuthenticated(false);
+        localStorage.removeItem('admin_session');
+        alert('Session expired. Please login again.');
+        return;
+      }
 
       const result = await response.json();
       if (result.success) {
@@ -162,8 +177,17 @@ const AdminDashboard = () => {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ filename })
         });
+
+        if (response.status === 401) {
+          // Session expired
+          setIsAuthenticated(false);
+          localStorage.removeItem('admin_session');
+          alert('Session expired. Please login again.');
+          return;
+        }
 
         const result = await response.json();
         if (result.success) {
