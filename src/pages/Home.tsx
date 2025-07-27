@@ -360,7 +360,7 @@ const Home = () => {
                 </div>
               </div>
               
-              {/* Emotional Main Heading */}
+              {/* Main H1 Heading for SEO */}
               <div className="mb-8 sm:mb-12">
                 <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
                     style={isVisible ? animations.fadeInUp : {}}>
