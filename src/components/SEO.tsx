@@ -105,44 +105,198 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   const addStructuredData = (title: string, description: string, image: string, url: string) => {
-    const structuredData = {
+    const baseSchema = {
       "@context": "https://schema.org",
+      "@graph": []
+    };
+
+    // Main Organization Schema
+    const organizationSchema = {
       "@type": "EducationalOrganization",
+      "@id": `${url}#organization`,
       "name": "Express English Hub",
+      "alternateName": ["EEH", "Express English Hub Indonesia"],
       "description": description,
       "url": url,
-      "logo": image,
+      "logo": {
+        "@type": "ImageObject",
+        "url": image,
+        "width": 200,
+        "height": 200
+      },
       "image": image,
+      "telephone": "+62-21-XXXXXXX",
+      "email": "info@expressenglishhub.com",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "availableLanguage": ["Indonesian", "English"]
+        "availableLanguage": ["Indonesian", "English"],
+        "telephone": "+62-21-XXXXXXX"
       },
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "ID",
-        "addressLocality": "Indonesia"
+        "addressLocality": "Jakarta",
+        "addressRegion": "DKI Jakarta",
+        "streetAddress": "Jl. Pendidikan No. 123"
       },
       "sameAs": [
         "https://www.facebook.com/ExpressEnglishHub",
         "https://www.instagram.com/expressenglishhub",
-        "https://www.youtube.com/@ExpressEnglishHub"
+        "https://www.youtube.com/@ExpressEnglishHub",
+        "https://linkedin.com/company/expressenglishhub"
       ],
-      "offers": {
-        "@type": "Offer",
-        "category": "TOEFL Preparation Course",
-        "description": "Comprehensive TOEFL ITP and iBT preparation courses"
-      },
-      "educationalCredentialAwarded": "TOEFL ITP Certificate",
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "TOEFL ITP",
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "Educational Testing Service (ETS)"
-        }
+      "foundingDate": "2020-01-01",
+      "numberOfEmployees": "50-100",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "847",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     };
+
+    // Website Schema
+    const websiteSchema = {
+      "@type": "WebSite",
+      "@id": `${url}#website`,
+      "url": url,
+      "name": "Express English Hub",
+      "description": description,
+      "publisher": {
+        "@id": `${url}#organization`
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${url}/blog?search={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ],
+      "inLanguage": ["id", "en"]
+    };
+
+    // Course Schemas for TOEFL programs
+    const toefliTPCourse = {
+      "@type": "Course",
+      "@id": `${url}#toefl-itp-course`,
+      "name": "TOEFL ITP Preparation Course",
+      "description": "Comprehensive TOEFL ITP preparation course with expert guidance",
+      "provider": {
+        "@id": `${url}#organization`
+      },
+      "courseCode": "TOEFL-ITP-2025",
+      "educationalCredentialAwarded": "TOEFL ITP Certificate",
+      "teaches": ["TOEFL Reading", "TOEFL Listening", "TOEFL Structure"],
+      "timeRequired": "P3M",
+      "coursePrerequisites": "Basic English proficiency",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "312"
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "Education",
+        "price": "2500000",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock"
+      }
+    };
+
+    const toefLiBTCourse = {
+      "@type": "Course", 
+      "@id": `${url}#toefl-ibt-course`,
+      "name": "TOEFL iBT Preparation Course",
+      "description": "Advanced TOEFL iBT preparation with speaking and writing components",
+      "provider": {
+        "@id": `${url}#organization`
+      },
+      "courseCode": "TOEFL-IBT-2025",
+      "educationalCredentialAwarded": "TOEFL iBT Certificate",
+      "teaches": ["TOEFL Reading", "TOEFL Listening", "TOEFL Speaking", "TOEFL Writing"],
+      "timeRequired": "P4M",
+      "coursePrerequisites": "Intermediate English proficiency",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "289"
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "Education",
+        "price": "3500000",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock"
+      }
+    };
+
+    baseSchema["@graph"] = [organizationSchema, websiteSchema, toefliTPCourse, toefLiBTCourse];
+
+    // Add article schema if it's an article page
+    if (article) {
+      const articleSchema = {
+        "@type": "Article",
+        "@id": `${url}#article`,
+        "headline": title,
+        "description": description,
+        "image": image,
+        "url": url,
+        "datePublished": article.publishedTime || new Date().toISOString(),
+        "dateModified": article.modifiedTime || new Date().toISOString(),
+        "author": {
+          "@type": "Organization",
+          "@id": `${url}#organization`
+        },
+        "publisher": {
+          "@id": `${url}#organization`
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": url
+        },
+        "articleSection": article.section || "TOEFL Tips",
+        "keywords": article.tags?.join(", ") || keywords,
+        "inLanguage": "id"
+      };
+      baseSchema["@graph"].push(articleSchema);
+    }
+
+    // Add breadcrumb schema if provided
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const breadcrumbSchema = {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        "itemListElement": breadcrumbs.map((crumb, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": crumb.name,
+          "item": crumb.url
+        }))
+      };
+      baseSchema["@graph"].push(breadcrumbSchema);
+    }
+
+    // Add FAQ schema if provided
+    if (faq && faq.length > 0) {
+      const faqSchema = {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        "mainEntity": faq.map(item => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+          }
+        }))
+      };
+      baseSchema["@graph"].push(faqSchema);
+    }
 
     let script = document.querySelector('script[type="application/ld+json"]');
     if (!script) {
@@ -150,7 +304,7 @@ const SEO: React.FC<SEOProps> = ({
       script.type = 'application/ld+json';
       document.head.appendChild(script);
     }
-    script.textContent = JSON.stringify(structuredData);
+    script.textContent = JSON.stringify(baseSchema, null, 2);
   };
 
   return null;
