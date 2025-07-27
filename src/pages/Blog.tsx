@@ -587,7 +587,17 @@ const Blog: React.FC = () => {
                         </div>
                         
                         <div className="flex items-center justify-between">
-                          <button className="bg-[#e97311] text-white px-6 py-2 rounded-lg hover:bg-[#d4640e] transition-colors font-semibold flex items-center group">
+                          <button 
+                            onClick={() => {
+                              if (post.isDynamic) {
+                                window.open(`/articles/${post.filename}`, '_blank');
+                              } else {
+                                // Handle static posts - could implement modal or detailed view
+                                alert('This is a static post. Full content coming soon!');
+                              }
+                            }}
+                            className="bg-[#e97311] text-white px-6 py-2 rounded-lg hover:bg-[#d4640e] transition-colors font-semibold flex items-center group"
+                          >
                             Baca
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                           </button>
