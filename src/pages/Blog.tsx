@@ -510,32 +510,34 @@ const Blog: React.FC = () => {
                     </p>
                   </div>
                   
-                  {searchTerm && (
-                    <button
-                      onClick={() => setSearchTerm('')}
-                      className="text-[#e97311] hover:text-[#d4640e] font-medium"
-                    >
-                      Hapus Filter
-                    </button>
-                  )}
-                  
-                  <button
-                    onClick={loadDynamicArticles}
-                    disabled={loading}
-                    className="bg-[#e97311] text-white px-4 py-2 rounded-lg hover:bg-[#d4640e] transition-colors font-medium flex items-center"
-                  >
-                    {loading ? (
-                      <>
-                        <RefreshCw className="animate-spin h-4 w-4 mr-2" />
-                        Loading...
-                      </>
-                    ) : (
-                      <>
-                        <RefreshCw className="h-4 w-4 mr-2" />
-                        Refresh
-                      </>
+                  <div className="flex items-center space-x-3">
+                    {searchTerm && (
+                      <button
+                        onClick={() => setSearchTerm('')}
+                        className="text-[#e97311] hover:text-[#d4640e] font-medium"
+                      >
+                        Hapus Filter
+                      </button>
                     )}
-                  </button>
+                    
+                    <button
+                      onClick={loadDynamicArticles}
+                      disabled={loading}
+                      className="bg-[#e97311] text-white px-4 py-2 rounded-lg hover:bg-[#d4640e] transition-colors font-medium flex items-center"
+                    >
+                      {loading ? (
+                        <>
+                          <RefreshCw className="animate-spin h-4 w-4 mr-2" />
+                          Loading...
+                        </>
+                      ) : (
+                        <>
+                          <RefreshCw className="h-4 w-4 mr-2" />
+                          Refresh
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Blog Posts Grid */}
