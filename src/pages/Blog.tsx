@@ -269,17 +269,21 @@ const Blog: React.FC = () => {
     }
   ];
 
+  // Combine static and dynamic articles
+  const allBlogPosts = [...blogPosts, ...dynamicArticles];
+
   const categories = [
-    { id: 'all', name: 'Semua Artikel', count: blogPosts.length },
-    { id: 'Tips', name: 'Tips & Strategi', count: blogPosts.filter(post => post.category === 'Tips').length },
-    { id: 'Panduan', name: 'Panduan', count: blogPosts.filter(post => post.category === 'Panduan').length },
-    { id: 'Beasiswa', name: 'Beasiswa', count: blogPosts.filter(post => post.category === 'Beasiswa').length },
-    { id: 'Success Story', name: 'Success Story', count: blogPosts.filter(post => post.category === 'Success Story').length },
-    { id: 'Universitas', name: 'Universitas', count: blogPosts.filter(post => post.category === 'Universitas').length }
+    { id: 'all', name: 'Semua Artikel', count: allBlogPosts.length },
+    { id: 'Tips', name: 'Tips & Strategi', count: allBlogPosts.filter(post => post.category === 'Tips').length },
+    { id: 'Panduan', name: 'Panduan', count: allBlogPosts.filter(post => post.category === 'Panduan').length },
+    { id: 'Beasiswa', name: 'Beasiswa', count: allBlogPosts.filter(post => post.category === 'Beasiswa').length },
+    { id: 'Success Story', name: 'Success Story', count: allBlogPosts.filter(post => post.category === 'Success Story').length },
+    { id: 'Universitas', name: 'Universitas', count: allBlogPosts.filter(post => post.category === 'Universitas').length },
+    { id: 'AI Generated', name: 'AI Generated', count: allBlogPosts.filter(post => post.category === 'AI Generated').length }
   ];
 
   // Filter posts
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = allBlogPosts.filter(post => {
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
