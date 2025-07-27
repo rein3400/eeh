@@ -49,36 +49,85 @@ const SEO: React.FC<SEOProps> = ({
     // Update document title
     document.title = title;
 
-    // Update meta description
+    // Basic SEO Meta Tags
     updateMeta('description', description);
     updateMeta('keywords', keywords);
     updateMeta('author', author);
-    updateMeta('robots', 'index, follow');
+    updateMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     updateMeta('language', 'id');
+    updateMeta('content-language', 'id');
+    updateMeta('revisit-after', '7 days');
+    updateMeta('rating', 'general');
+    updateMeta('distribution', 'global');
+    updateMeta('viewport', 'width=device-width, initial-scale=1.0, shrink-to-fit=no');
     
-    // Open Graph tags
+    // Advanced SEO Meta Tags
+    updateMeta('geo.region', 'ID');
+    updateMeta('geo.placename', 'Indonesia');
+    updateMeta('geo.position', '-6.2088;106.8456');
+    updateMeta('ICBM', '-6.2088, 106.8456');
+    updateMeta('HandheldFriendly', 'True');
+    updateMeta('MobileOptimized', '320');
+    
+    // Open Graph tags (Enhanced)
     updateMeta('og:title', title, 'property');
     updateMeta('og:description', description, 'property');
     updateMeta('og:image', image, 'property');
+    updateMeta('og:image:alt', `${title} - Express English Hub`, 'property');
+    updateMeta('og:image:width', '1200', 'property');
+    updateMeta('og:image:height', '630', 'property');
     updateMeta('og:url', url, 'property');
     updateMeta('og:type', type, 'property');
     updateMeta('og:site_name', 'Express English Hub', 'property');
     updateMeta('og:locale', 'id_ID', 'property');
+    updateMeta('og:locale:alternate', 'en_US', 'property');
     
-    // Twitter Card tags
+    // Twitter Card tags (Enhanced)
     updateMeta('twitter:card', 'summary_large_image', 'name');
     updateMeta('twitter:title', title, 'name');
     updateMeta('twitter:description', description, 'name');
     updateMeta('twitter:image', image, 'name');
+    updateMeta('twitter:image:alt', `${title} - Express English Hub`, 'name');
     updateMeta('twitter:site', '@ExpressEnglishHub', 'name');
+    updateMeta('twitter:creator', '@ExpressEnglishHub', 'name');
+    updateMeta('twitter:domain', 'expressenglishhub.com', 'name');
+    
+    // Article-specific meta tags
+    if (article) {
+      updateMeta('article:published_time', article.publishedTime || new Date().toISOString(), 'property');
+      updateMeta('article:modified_time', article.modifiedTime || new Date().toISOString(), 'property');
+      updateMeta('article:author', article.author || author, 'property');
+      updateMeta('article:section', article.section || 'TOEFL Tips', 'property');
+      if (article.tags) {
+        article.tags.forEach(tag => {
+          const tagMeta = document.createElement('meta');
+          tagMeta.setAttribute('property', 'article:tag');
+          tagMeta.content = tag;
+          document.head.appendChild(tagMeta);
+        });
+      }
+    }
     
     // Additional SEO meta tags
     updateMeta('theme-color', '#e87211', 'name');
     updateMeta('msapplication-TileColor', '#e87211', 'name');
+    updateMeta('msapplication-TileImage', '/logo.jpg', 'name');
     updateMeta('application-name', 'Express English Hub', 'name');
+    updateMeta('apple-mobile-web-app-title', 'Express English Hub', 'name');
+    updateMeta('apple-mobile-web-app-capable', 'yes', 'name');
+    updateMeta('apple-mobile-web-app-status-bar-style', 'default', 'name');
+    
+    // Educational-specific meta tags
+    updateMeta('educational-level', 'adult-education', 'name');
+    updateMeta('educational-audience', 'student', 'name');
+    updateMeta('subject', 'English Language Learning, TOEFL Preparation', 'name');
+    updateMeta('audience', 'Students preparing for TOEFL tests', 'name');
     
     // Canonical URL
     updateCanonical(url);
+    
+    // Add hreflang attributes
+    addHrefLang(url);
     
     // Add structured data
     addStructuredData(title, description, image, url);
