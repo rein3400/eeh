@@ -2,7 +2,7 @@
 export const seoConfig = {
   home: {
     title: 'Express English Hub - Kursus TOEFL ITP & iBT Terbaik Indonesia',
-    description: 'Platform persiapan TOEFL ITP dan TOEFL iBT terbaik di Indonesia. Kursus online, tes simulasi, dan bimbingan ahli untuk raih skor target TOEFL Anda. Trainer bersertifikat ETS.',
+    description: 'Platform TOEFL ITP dan iBT terbaik Indonesia. Kursus online, tes simulasi, bimbingan ahli untuk raih skor target. Trainer bersertifikat ETS.',
     keywords: 'TOEFL ITP, TOEFL iBT, kursus TOEFL, tes TOEFL online, persiapan TOEFL Indonesia, bimbingan TOEFL, skor TOEFL tinggi, TOEFL course, TOEFL training, beasiswa luar negeri, studi luar negeri',
     url: '/'
   },
