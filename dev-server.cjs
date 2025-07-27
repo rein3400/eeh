@@ -544,3 +544,270 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+// Indonesian Content Generator
+function generateIndonesianContent(title, primaryKeyword, keywords) {
+  return `
+        <div class="toc">
+            <h3>📋 Daftar Isi</h3>
+            <ul>
+                <li><a href="#pendahuluan">Pendahuluan</a></li>
+                <li><a href="#mengapa-penting">Mengapa ${primaryKeyword} Penting?</a></li>
+                <li><a href="#panduan-lengkap">Panduan Lengkap ${primaryKeyword}</a></li>
+                <li><a href="#tips-strategi">Tips dan Strategi Terbukti</a></li>
+                <li><a href="#kesalahan-umum">Kesalahan yang Harus Dihindari</a></li>
+                <li><a href="#resources">Sumber Daya Tambahan</a></li>
+                <li><a href="#kesimpulan">Kesimpulan</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="pendahuluan">🎯 Pendahuluan</h2>
+        <p>Dalam era globalisasi ini, <strong>${primaryKeyword}</strong> menjadi salah satu keterampilan yang sangat penting untuk dikuasai. Banyak orang mencari informasi tentang <strong>${keywords.join(', ')}</strong> untuk meningkatkan kemampuan mereka.</p>
+        
+        <div class="highlight-box">
+            <p><strong>Tahukah Anda?</strong> Menguasai ${primaryKeyword} dapat meningkatkan peluang karir hingga 300% dan membuka akses ke beasiswa internasional senilai miliaran rupiah.</p>
+        </div>
+        
+        <p>Artikel ini akan membahas secara komprehensif tentang ${primaryKeyword}, memberikan panduan praktis, tips terbukti, dan strategi yang dapat langsung Anda terapkan.</p>
+        
+        <h2 id="mengapa-penting">🔥 Mengapa ${primaryKeyword} Sangat Penting?</h2>
+        <p>Ada beberapa alasan mengapa ${primaryKeyword} menjadi keterampilan yang wajib dikuasai di tahun 2025:</p>
+        
+        <ul>
+            <li><strong>Peluang Karir Global:</strong> Perusahaan multinasional sangat menghargai kandidat yang menguasai ${primaryKeyword}</li>
+            <li><strong>Akses Pendidikan Internasional:</strong> Universitas terbaik dunia mensyaratkan kemampuan ${primaryKeyword}</li>
+            <li><strong>Pengembangan Diri:</strong> Meningkatkan confidence dan kemampuan komunikasi</li>
+            <li><strong>Networking Internasional:</strong> Membuka kesempatan berkolaborasi dengan profesional global</li>
+        </ul>
+        
+        <div class="tip">
+            <strong>Pro Tip:</strong> Investasi waktu 30 menit per hari untuk ${primaryKeyword} dapat memberikan hasil signifikan dalam 3-6 bulan.
+        </div>
+        
+        <h2 id="panduan-lengkap">📚 Panduan Lengkap ${primaryKeyword}</h2>
+        <p>Berikut adalah panduan step-by-step yang telah terbukti efektif untuk menguasai ${primaryKeyword}:</p>
+        
+        <h3>Langkah 1: Persiapan dan Assessment</h3>
+        <p>Sebelum memulai, penting untuk mengetahui level kemampuan Anda saat ini. Lakukan self-assessment untuk menentukan starting point yang tepat.</p>
+        
+        <h3>Langkah 2: Perencanaan Studi Sistematis</h3>
+        <p>Buat jadwal belajar yang realistis dan konsisten. Fokus pada ${keywords.slice(0, 3).join(', ')} sebagai fondasi utama.</p>
+        
+        <h3>Langkah 3: Implementasi Strategi Terbukti</h3>
+        <p>Gunakan metode yang telah terbukti efektif untuk mempercepat proses pembelajaran Anda.</p>
+        
+        <div class="cta">
+            <h3>🚀 Siap Meningkatkan Kemampuan Anda?</h3>
+            <p>Bergabung dengan Express English Hub dan raih skor TOEFL impian Anda bersama mentor berpengalaman!</p>
+        </div>
+        
+        <h2 id="tips-strategi">💡 Tips dan Strategi Terbukti</h2>
+        <p>Berikut adalah tips yang telah membantu ribuan siswa berhasil menguasai ${primaryKeyword}:</p>
+        
+        <ol>
+            <li><strong>Konsistensi adalah Kunci:</strong> Lakukan latihan rutin setiap hari, minimal 30 menit</li>
+            <li><strong>Gunakan Sumber Terpercaya:</strong> Pilih materi pembelajaran yang berkualitas tinggi</li>
+            <li><strong>Practice Makes Perfect:</strong> Lakukan simulasi dan latihan soal secara intensif</li>
+            <li><strong>Join Study Group:</strong> Belajar bersama teman dapat meningkatkan motivasi</li>
+            <li><strong>Track Progress:</strong> Monitor perkembangan untuk mengetahui area yang perlu diperbaiki</li>
+        </ol>
+        
+        <h3>Strategi Khusus untuk ${primaryKeyword}</h3>
+        <p>Untuk mencapai hasil maksimal dalam ${primaryKeyword}, terapkan strategi berikut:</p>
+        
+        <ul>
+            <li>Fokus pada weaknesses dan perkuat strengths</li>
+            <li>Gunakan teknik active learning untuk retention yang lebih baik</li>
+            <li>Manfaatkan technology untuk pembelajaran yang lebih efektif</li>
+            <li>Regular evaluation dan adjustment strategi sesuai progress</li>
+        </ul>
+        
+        <h2 id="kesalahan-umum">❌ Kesalahan yang Harus Dihindari</h2>
+        <p>Banyak orang membuat kesalahan dalam belajar ${primaryKeyword}. Hindari kesalahan berikut:</p>
+        
+        <div class="highlight-box">
+            <h4>5 Kesalahan Fatal dalam ${primaryKeyword}:</h4>
+            <ol>
+                <li>Tidak memiliki target yang jelas dan terukur</li>
+                <li>Belajar tanpa sistem dan perencanaan matang</li>
+                <li>Mengabaikan fundamental dan ingin cepat ke advanced</li>
+                <li>Tidak konsisten dalam jadwal belajar</li>
+                <li>Terlalu fokus pada theory tanpa practice</li>
+            </ol>
+        </div>
+        
+        <h2 id="resources">📖 Sumber Daya Tambahan</h2>
+        <p>Untuk mendukung pembelajaran ${primaryKeyword} Anda, manfaatkan sumber daya berikut:</p>
+        
+        <h3>Rekomendasi Platform Online</h3>
+        <ul>
+            <li><strong>Express English Hub:</strong> Platform terpercaya dengan mentor berpengalaman</li>
+            <li><strong>Official Practice Tests:</strong> Soal-soal resmi untuk simulasi</li>
+            <li><strong>Mobile Apps:</strong> Aplikasi untuk latihan di waktu senggang</li>
+            <li><strong>YouTube Channels:</strong> Video tutorial gratis berkualitas tinggi</li>
+        </ul>
+        
+        <h3>Tips Memilih Sumber Belajar</h3>
+        <p>Pastikan sumber belajar yang Anda pilih memiliki karakteristik berikut:</p>
+        <ul>
+            <li>Update dengan standar terbaru</li>
+            <li>Dibuat oleh expert bersertifikat</li>
+            <li>Memiliki track record yang terbukti</li>
+            <li>Menyediakan feedback dan assessment</li>
+        </ul>
+        
+        <div class="conclusion">
+            <h2 id="kesimpulan">🎉 Kesimpulan</h2>
+            <p>Menguasai <strong>${primaryKeyword}</strong> memang membutuhkan dedikasi dan strategi yang tepat. Dengan mengikuti panduan komprehensif ini, Anda telah memiliki roadmap yang jelas untuk mencapai tujuan Anda.</p>
+            
+            <p>Ingatlah bahwa kesuksesan dalam ${primaryKeyword} tidak datang dalam semalam. Konsistensi, kerja keras, dan strategi yang tepat adalah kunci utama. Mulai dari sekarang, terapkan tips dan strategi yang telah dibagikan dalam artikel ini.</p>
+            
+            <p><strong>Key Takeaways:</strong></p>
+            <ul>
+                <li>${primaryKeyword} adalah investasi jangka panjang untuk masa depan</li>
+                <li>Konsistensi dan perencanaan matang sangat penting</li>
+                <li>Gunakan sumber daya terpercaya dan berkualitas</li>
+                <li>Monitor progress secara regular</li>
+                <li>Jangan takut untuk meminta bantuan expert</li>
+            </ul>
+        </div>`;
+}
+
+// English Content Generator
+function generateEnglishContent(title, primaryKeyword, keywords) {
+  return `
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#why-important">Why ${primaryKeyword} is Important?</a></li>
+                <li><a href="#complete-guide">Complete ${primaryKeyword} Guide</a></li>
+                <li><a href="#tips-strategies">Proven Tips and Strategies</a></li>
+                <li><a href="#common-mistakes">Common Mistakes to Avoid</a></li>
+                <li><a href="#resources">Additional Resources</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+        
+        <h2 id="introduction">🎯 Introduction</h2>
+        <p>In today's globalized world, <strong>${primaryKeyword}</strong> has become one of the most essential skills to master. Many people are searching for information about <strong>${keywords.join(', ')}</strong> to enhance their abilities.</p>
+        
+        <div class="highlight-box">
+            <p><strong>Did You Know?</strong> Mastering ${primaryKeyword} can increase career opportunities by up to 300% and open access to international scholarships worth billions.</p>
+        </div>
+        
+        <p>This article will comprehensively discuss ${primaryKeyword}, providing practical guidance, proven tips, and strategies that you can immediately apply.</p>
+        
+        <h2 id="why-important">🔥 Why ${primaryKeyword} is Extremely Important?</h2>
+        <p>There are several reasons why ${primaryKeyword} has become a mandatory skill to master in 2025:</p>
+        
+        <ul>
+            <li><strong>Global Career Opportunities:</strong> Multinational companies highly value candidates who master ${primaryKeyword}</li>
+            <li><strong>International Education Access:</strong> Top world universities require ${primaryKeyword} proficiency</li>
+            <li><strong>Personal Development:</strong> Increases confidence and communication skills</li>
+            <li><strong>International Networking:</strong> Opens opportunities to collaborate with global professionals</li>
+        </ul>
+        
+        <div class="tip">
+            <strong>Pro Tip:</strong> Investing 30 minutes daily in ${primaryKeyword} can yield significant results within 3-6 months.
+        </div>
+        
+        <h2 id="complete-guide">📚 Complete ${primaryKeyword} Guide</h2>
+        <p>Here's a proven step-by-step guide to master ${primaryKeyword}:</p>
+        
+        <h3>Step 1: Preparation and Assessment</h3>
+        <p>Before starting, it's important to know your current skill level. Conduct a self-assessment to determine the right starting point.</p>
+        
+        <h3>Step 2: Systematic Study Planning</h3>
+        <p>Create a realistic and consistent study schedule. Focus on ${keywords.slice(0, 3).join(', ')} as your main foundation.</p>
+        
+        <h3>Step 3: Implementation of Proven Strategies</h3>
+        <p>Use methods that have been proven effective to accelerate your learning process.</p>
+        
+        <div class="cta">
+            <h3>🚀 Ready to Boost Your Skills?</h3>
+            <p>Join Express English Hub and achieve your dream TOEFL score with experienced mentors!</p>
+        </div>
+        
+        <h2 id="tips-strategies">💡 Proven Tips and Strategies</h2>
+        <p>Here are tips that have helped thousands of students successfully master ${primaryKeyword}:</p>
+        
+        <ol>
+            <li><strong>Consistency is Key:</strong> Practice daily for at least 30 minutes</li>
+            <li><strong>Use Reliable Sources:</strong> Choose high-quality learning materials</li>
+            <li><strong>Practice Makes Perfect:</strong> Conduct intensive simulations and exercises</li>
+            <li><strong>Join Study Groups:</strong> Learning with peers can boost motivation</li>
+            <li><strong>Track Progress:</strong> Monitor development to identify areas for improvement</li>
+        </ol>
+        
+        <h3>Special Strategies for ${primaryKeyword}</h3>
+        <p>To achieve maximum results in ${primaryKeyword}, apply these strategies:</p>
+        
+        <ul>
+            <li>Focus on weaknesses while strengthening your strengths</li>
+            <li>Use active learning techniques for better retention</li>
+            <li>Leverage technology for more effective learning</li>
+            <li>Regular evaluation and strategy adjustment based on progress</li>
+        </ul>
+        
+        <h2 id="common-mistakes">❌ Mistakes to Avoid</h2>
+        <p>Many people make mistakes when learning ${primaryKeyword}. Avoid these common errors:</p>
+        
+        <div class="highlight-box">
+            <h4>5 Fatal Mistakes in ${primaryKeyword}:</h4>
+            <ol>
+                <li>Not having clear and measurable targets</li>
+                <li>Learning without system and proper planning</li>
+                <li>Ignoring fundamentals and wanting to jump to advanced</li>
+                <li>Being inconsistent with study schedule</li>
+                <li>Focusing too much on theory without practice</li>
+            </ol>
+        </div>
+        
+        <h2 id="resources">📖 Additional Resources</h2>
+        <p>To support your ${primaryKeyword} learning, utilize these resources:</p>
+        
+        <h3>Recommended Online Platforms</h3>
+        <ul>
+            <li><strong>Express English Hub:</strong> Trusted platform with experienced mentors</li>
+            <li><strong>Official Practice Tests:</strong> Official questions for simulation</li>
+            <li><strong>Mobile Apps:</strong> Applications for practice during spare time</li>
+            <li><strong>YouTube Channels:</strong> High-quality free tutorial videos</li>
+        </ul>
+        
+        <h3>Tips for Choosing Learning Resources</h3>
+        <p>Make sure your chosen learning resources have these characteristics:</p>
+        <ul>
+            <li>Updated with latest standards</li>
+            <li>Created by certified experts</li>
+            <li>Has proven track record</li>
+            <li>Provides feedback and assessment</li>
+        </ul>
+        
+        <div class="conclusion">
+            <h2 id="conclusion">🎉 Conclusion</h2>
+            <p>Mastering <strong>${primaryKeyword}</strong> indeed requires dedication and the right strategy. By following this comprehensive guide, you now have a clear roadmap to achieve your goals.</p>
+            
+            <p>Remember that success in ${primaryKeyword} doesn't come overnight. Consistency, hard work, and proper strategy are the main keys. Starting now, apply the tips and strategies shared in this article.</p>
+            
+            <p><strong>Key Takeaways:</strong></p>
+            <ul>
+                <li>${primaryKeyword} is a long-term investment for the future</li>
+                <li>Consistency and proper planning are crucial</li>
+                <li>Use trusted and quality resources</li>
+                <li>Monitor progress regularly</li>
+                <li>Don't hesitate to seek expert help</li>
+            </ul>
+        </div>`;
+}
+
+// Sanitize filename function
+function sanitizeFilename(filename) {
+  // Remove HTML tags and special characters
+  return filename
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .substring(0, 60);
+}
