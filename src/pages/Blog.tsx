@@ -433,7 +433,16 @@ const Blog: React.FC = () => {
                       </div>
                     </div>
                     
-                    <button className="w-full bg-[#e97311] text-white py-3 rounded-lg hover:bg-[#d4640e] transition-colors font-semibold flex items-center justify-center group">
+                    <button 
+                      onClick={() => {
+                        if (post.isDynamic) {
+                          window.open(`/articles/${post.filename}`, '_blank');
+                        } else {
+                          alert('This is a static post. Full content coming soon!');
+                        }
+                      }}
+                      className="w-full bg-[#e97311] text-white py-3 rounded-lg hover:bg-[#d4640e] transition-colors font-semibold flex items-center justify-center group"
+                    >
                       Baca Selengkapnya
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </button>
