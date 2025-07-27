@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const path = require('path');
+const generateSitemap = require('./generate-sitemap.cjs');
 
 const app = express();
 const PORT = 8000;
