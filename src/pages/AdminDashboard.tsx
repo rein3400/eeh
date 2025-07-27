@@ -70,243 +70,248 @@ const AdminDashboard = () => {
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
-  const renderDashboard = () => (
+  // Load articles from backend
+  useEffect(() => {
+    loadArticles();
+  }, []);
+
+  const loadArticles = async () => {
+    try {
+      const response = await fetch('/api/articles.php');
+      const data = await response.json();
+      setArticles(data.articles || []);
+    } catch (error) {
+      console.error('Error loading articles:', error);
+    }
+  };
+
+  const generateArticles = async () => {
+    if (!generatorForm.keywords.trim()) {
+      alert('Please enter keywords');
+      return;
+    }
+
+    setIsGenerating(true);
+    try {
+      const response = await fetch('/api/generate-article.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(generatorForm)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert(`Successfully generated ${result.count} articles!`);
+        loadArticles();
+        setGeneratorForm({ keywords: '', count: 1, language: 'id' });
+      } else {
+        alert('Error generating articles: ' + result.error);
+      }
+    } catch (error) {
+      alert('Error: ' + error.message);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const deleteArticle = async (filename) => {
+    if (confirm('Are you sure you want to delete this article?')) {
+      try {
+        const response = await fetch('/api/delete-article.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ filename })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          loadArticles();
+        } else {
+          alert('Error deleting article: ' + result.error);
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
+  };
+
+  const renderArticles = () => (
     <div className="space-y-6">
-      {/* Welcome Section */}
-      <div className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back, {user.name}!</h2>
-        <p className="text-gray-600">Here's what's happening with your TOEFL platform today.</p>
-      </div>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Users</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.totalUsers.toLocaleString()}</p>
-            </div>
-            <div className="bg-blue-100 p-3 rounded-full">
-              <Users className="h-6 w-6 text-blue-600" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-            <span className="text-sm text-green-600">+12% from last month</span>
-          </div>
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-xl font-semibold text-gray-900">Articles Management</h3>
+          <button
+            onClick={() => setActiveTab('generator')}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Generate New Articles
+          </button>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Active Students</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.activeStudents.toLocaleString()}</p>
-            </div>
-            <div className="bg-green-100 p-3 rounded-full">
-              <UserCheck className="h-6 w-6 text-green-600" />
-            </div>
+        {articles.length === 0 ? (
+          <div className="text-center py-12">
+            <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No articles found</h3>
+            <p className="text-gray-600 mb-4">
+              Start by generating some articles using the AI blog generator
+            </p>
+            <button
+              onClick={() => setActiveTab('generator')}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+            >
+              Generate Articles
+            </button>
           </div>
-          <div className="mt-4 flex items-center">
-            <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-            <span className="text-sm text-green-600">+8% from last month</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Revenue</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.totalRevenue}</p>
-            </div>
-            <div className="bg-yellow-100 p-3 rounded-full">
-              <Award className="h-6 w-6 text-yellow-600" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-            <span className="text-sm text-green-600">+15% from last month</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Completion Rate</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.completionRate}</p>
-            </div>
-            <div className="bg-purple-100 p-3 rounded-full">
-              <Target className="h-6 w-6 text-purple-600" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-            <span className="text-sm text-green-600">+3% from last month</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Avg TOEFL Score</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.avgScore}</p>
-            </div>
-            <div className="bg-indigo-100 p-3 rounded-full">
-              <BarChart3 className="h-6 w-6 text-indigo-600" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
-            <span className="text-sm text-green-600">+25 points from last month</span>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Courses</p>
-              <p className="text-3xl font-bold text-gray-900">{dashboardStats.totalCourses}</p>
-            </div>
-            <div className="bg-red-100 p-3 rounded-full">
-              <BookOpen className="h-6 w-6 text-red-600" />
-            </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            <Plus className="h-4 w-4 text-blue-500 mr-1" />
-            <span className="text-sm text-blue-600">2 new courses this month</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Recent Users</h3>
-          </div>
+        ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Filename</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {recentUsers.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50">
+                {articles.map((article, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                        <div className="text-sm text-gray-500">{user.email}</div>
-                      </div>
+                      <div className="text-sm font-medium text-gray-900">{article.title}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.course}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                        user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}>
-                        {user.status}
-                      </span>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{article.filename}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{article.created}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                      <a
+                        href={`/articles/${article.filename}`}
+                        target="_blank"
+                        className="text-blue-600 hover:text-blue-900"
+                      >
+                        <Eye className="h-4 w-4 inline" />
+                      </a>
+                      <button
+                        onClick={() => deleteArticle(article.filename)}
+                        className="text-red-600 hover:text-red-900"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
-          </div>
-          <div className="p-6 space-y-4">
-            <button className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 flex items-center justify-center">
-              <Plus className="h-5 w-5 mr-2" />
-              Add New Course
-            </button>
-            <button className="w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 flex items-center justify-center">
-              <UserCheck className="h-5 w-5 mr-2" />
-              Manage Users
-            </button>
-            <button className="w-full bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 flex items-center justify-center">
-              <BarChart3 className="h-5 w-5 mr-2" />
-              View Analytics
-            </button>
-            <button className="w-full bg-orange-600 text-white px-4 py-3 rounded-lg hover:bg-orange-700 flex items-center justify-center">
-              <Settings className="h-5 w-5 mr-2" />
-              Settings
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
 
-  const renderUsers = () => (
-    <div className="bg-white rounded-lg shadow-sm">
-      <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-gray-900">All Users</h3>
-        <div className="flex space-x-3">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
-            <Plus className="h-4 w-4 mr-2" />
-            Add New User
-          </button>
-          <button className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 flex items-center">
-            <Download className="h-4 w-4 mr-2" />
-            Export
+  const renderBlogGenerator = () => (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-6">AI Blog Generator</h3>
+        <p className="text-gray-600 mb-6">
+          Generate high-quality articles using Google Gemini 2.5 Flash. Enter keywords and specify how many articles you want to generate.
+        </p>
+
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Keywords (separated by commas)
+            </label>
+            <input
+              type="text"
+              value={generatorForm.keywords}
+              onChange={(e) => setGeneratorForm({...generatorForm, keywords: e.target.value})}
+              placeholder="e.g., TOEFL preparation, English learning, study tips"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              disabled={isGenerating}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Number of Articles
+              </label>
+              <input
+                type="number"
+                min="1"
+                max="10"
+                value={generatorForm.count}
+                onChange={(e) => setGeneratorForm({...generatorForm, count: parseInt(e.target.value)})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                disabled={isGenerating}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Language
+              </label>
+              <select
+                value={generatorForm.language}
+                onChange={(e) => setGeneratorForm({...generatorForm, language: e.target.value})}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                disabled={isGenerating}
+              >
+                <option value="id">Indonesian</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+          </div>
+
+          <button
+            onClick={generateArticles}
+            disabled={isGenerating || !generatorForm.keywords.trim()}
+            className="w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+          >
+            {isGenerating ? (
+              <>
+                <RefreshCw className="animate-spin h-5 w-5 mr-2" />
+                Generating Articles...
+              </>
+            ) : (
+              <>
+                <Plus className="h-5 w-5 mr-2" />
+                Generate Articles
+              </>
+            )}
           </button>
         </div>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Join Date</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {recentUsers.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="h-10 w-10 bg-gray-300 rounded-full flex items-center justify-center">
-                      <User className="h-5 w-5 text-gray-600" />
-                    </div>
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                      <div className="text-sm text-gray-500">{user.email}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{user.course}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                  }`}>
-                    {user.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.joinDate}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                  <button className="text-blue-600 hover:text-blue-900">
-                    <Eye className="h-4 w-4" />
-                  </button>
-                  <button className="text-green-600 hover:text-green-900">
-                    <Edit className="h-4 w-4" />
-                  </button>
-                  <button className="text-red-600 hover:text-red-900">
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      {/* Recent Generated Articles */}
+      <div className="bg-white rounded-lg shadow-sm p-6">
+        <h4 className="text-lg font-semibold text-gray-900 mb-4">Recent Articles</h4>
+        {articles.slice(0, 5).map((article, index) => (
+          <div key={index} className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0">
+            <div>
+              <h5 className="font-medium text-gray-900">{article.title}</h5>
+              <p className="text-sm text-gray-500">{article.filename}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <a
+                href={`/articles/${article.filename}`}
+                target="_blank"
+                className="text-blue-600 hover:text-blue-800"
+              >
+                <Eye className="h-4 w-4" />
+              </a>
+              <button
+                onClick={() => deleteArticle(article.filename)}
+                className="text-red-600 hover:text-red-800"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
