@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { PageSkeleton } from './components/Skeleton';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -8,6 +8,8 @@ import Contact from './pages/Contact';
 import ToeflItp from './pages/ToeflItp';
 import ToeflIbt from './pages/ToeflIbt';
 import Blog from './pages/Blog';
+import AdminDashboard from './pages/AdminDashboard';
+import { initGA, usePageTracking, trackPerformance } from './utils/analytics';
 
 function App() {
   return (
