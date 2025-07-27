@@ -33,8 +33,8 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Express English Hub - Kuasai Tes TOEFL ITP & iBT Anda',
-  description = 'Platform persiapan TOEFL ITP dan TOEFL iBT terbaik di Indonesia. Kursus online, tes simulasi, dan bimbingan ahli untuk raih skor target TOEFL Anda. Trainer bersertifikat ETS.',
+  title = 'Express English Hub - TOEFL ITP & iBT Preparation',
+  description = 'Platform TOEFL ITP dan iBT terbaik Indonesia. Kursus online, tes simulasi, bimbingan ahli untuk raih skor target. Trainer bersertifikat ETS.',
   keywords = 'TOEFL ITP, TOEFL iBT, kursus TOEFL, tes TOEFL online, persiapan TOEFL, bimbingan TOEFL, skor TOEFL tinggi, TOEFL Indonesia, kelas TOEFL, latihan TOEFL, simulasi TOEFL, tips TOEFL, strategi TOEFL, beasiswa luar negeri, studi luar negeri, tes bahasa inggris, ETS TOEFL, TOEFL preparation, TOEFL course, TOEFL training',
   image = '/logo.jpg',
   url = typeof window !== 'undefined' ? window.location.href : '',
