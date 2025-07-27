@@ -318,22 +318,14 @@ const AdminDashboard = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'dashboard':
-        return renderDashboard();
-      case 'users':
-        return renderUsers();
-      case 'courses':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Courses Management</h3><p className="text-gray-600 mt-2">Course management interface coming soon...</p></div>;
-      case 'posts':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Posts Management</h3><p className="text-gray-600 mt-2">Blog posts management interface coming soon...</p></div>;
-      case 'analytics':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Analytics Dashboard</h3><p className="text-gray-600 mt-2">Advanced analytics dashboard coming soon...</p></div>;
-      case 'messages':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Messages</h3><p className="text-gray-600 mt-2">Message management interface coming soon...</p></div>;
+      case 'articles':
+        return renderArticles();
+      case 'generator':
+        return renderBlogGenerator();
       case 'settings':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Settings</h3><p className="text-gray-600 mt-2">Settings panel coming soon...</p></div>;
+        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Settings</h3><p className="text-gray-600 mt-2">Settings panel for blog management and configuration.</p></div>;
       default:
-        return renderDashboard();
+        return renderArticles();
     }
   };
 
