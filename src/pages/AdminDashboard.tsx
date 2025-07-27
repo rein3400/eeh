@@ -37,16 +37,70 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('articles');
   const [articles, setArticles] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [userInfo, setUserInfo] = useState(null);
   const [generatorForm, setGeneratorForm] = useState({
     keywords: '',
     count: 1,
     language: 'id'
   });
+
   const [user] = useState({
     name: 'Admin EEH',
     email: 'admin@expressenglishhub.com',
     avatar: '/logo.jpg'
   });
+
+  // Check authentication on component mount
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = async () => {
+    setIsCheckingAuth(true);
+    try {
+      const response = await fetch('/api/auth-check.php', {
+        credentials: 'include'
+      });
+      const result = await response.json();
+      
+      if (result.success && result.authenticated) {
+        setIsAuthenticated(true);
+        setUserInfo(result);
+        loadArticles(); // Load articles after authentication
+      } else {
+        setIsAuthenticated(false);
+        localStorage.removeItem('admin_session');
+      }
+    } catch (error) {
+      console.error('Auth check error:', error);
+      setIsAuthenticated(false);
+    } finally {
+      setIsCheckingAuth(false);
+    }
+  };
+
+  const handleLoginSuccess = (userData: any) => {
+    setIsAuthenticated(true);
+    setUserInfo(userData);
+    loadArticles();
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth-check.php', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      localStorage.removeItem('admin_session');
+      setIsAuthenticated(false);
+      setUserInfo(null);
+      setArticles([]);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const sidebarItems = [
     { id: 'articles', label: 'Articles', icon: FileText },
