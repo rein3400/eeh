@@ -205,6 +205,14 @@ app.post('/api/generate-article.php', checkAuth, async (req, res) => {
       articles: generatedArticles
     });
     
+    // Auto-regenerate sitemap after creating articles
+    try {
+      generateSitemap();
+      console.log('✅ Sitemap auto-updated after article generation');
+    } catch (error) {
+      console.error('❌ Error updating sitemap:', error);
+    }
+    
   } catch (error) {
     console.error('Error generating article:', error);
     res.status(500).json({
