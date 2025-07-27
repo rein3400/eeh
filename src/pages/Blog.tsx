@@ -29,9 +29,47 @@ const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [visiblePosts, setVisiblePosts] = useState<Set<number>>(new Set());
+  const [dynamicArticles, setDynamicArticles] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   
   const postsPerPage = 6;
   const blogRef = useRef<HTMLElement>(null);
+
+  // Load dynamic articles from backend
+  useEffect(() => {
+    loadDynamicArticles();
+  }, []);
+
+  const loadDynamicArticles = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/articles.php');
+      const data = await response.json();
+      if (data.success && data.articles) {
+        const formattedArticles = data.articles.map((article: any, index: number) => ({
+          id: 1000 + index, // Start from 1000 to avoid conflicts with static posts
+          title: article.title,
+          excerpt: `Artikel yang dihasilkan secara otomatis menggunakan AI untuk memberikan insight terbaru tentang TOEFL dan pembelajaran bahasa Inggris.`,
+          content: `Baca artikel lengkap dengan mengklik tombol di bawah ini.`,
+          author: "AI Content Generator",
+          date: article.created.split(' ')[0], // Get only date part
+          category: "AI Generated",
+          readTime: "5 min",
+          image: "🤖",
+          views: Math.floor(Math.random() * 1000) + 100,
+          likes: Math.floor(Math.random() * 50) + 10,
+          tags: ["AI Generated", "TOEFL", "Auto Content"],
+          filename: article.filename,
+          isDynamic: true
+        }));
+        setDynamicArticles(formattedArticles);
+      }
+    } catch (error) {
+      console.error('Error loading dynamic articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Animations
   const animations = {
