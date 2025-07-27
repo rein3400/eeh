@@ -153,6 +153,25 @@ const SEO: React.FC<SEOProps> = ({
     canonical.href = url;
   };
 
+  const addHrefLang = (url: string) => {
+    // Remove existing hreflang tags
+    document.querySelectorAll('link[hreflang]').forEach(link => link.remove());
+    
+    const languages = [
+      { lang: 'id', url: url },
+      { lang: 'en', url: url.replace(/\/$/, '') + '?lang=en' },
+      { lang: 'x-default', url: url }
+    ];
+    
+    languages.forEach(({ lang, url: langUrl }) => {
+      const hreflang = document.createElement('link');
+      hreflang.rel = 'alternate';
+      hreflang.setAttribute('hreflang', lang);
+      hreflang.href = langUrl;
+      document.head.appendChild(hreflang);
+    });
+  };
+
   const addStructuredData = (title: string, description: string, image: string, url: string) => {
     const baseSchema = {
       "@context": "https://schema.org",
