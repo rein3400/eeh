@@ -477,11 +477,11 @@ const Home = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Apa yang kalian dapatkan
+                Mengapa Memilih Express English Hub?
               </h2>
-              <h3 className="text-2xl sm:text-3xl font-bold">
-                di <span className="bg-[#e87211] text-white px-4 py-2 rounded">Express English Hub</span>
-              </h3>
+              <p className="text-2xl sm:text-3xl font-bold">
+                Program <span className="bg-[#e87211] text-white px-4 py-2 rounded">TOEFL Terbaik Indonesia</span>
+              </p>
             </div>
             
             <div className="space-y-16">
