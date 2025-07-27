@@ -309,6 +309,21 @@ const Home = () => {
         keywords={seoConfig.home.keywords}
         url={seoConfig.home.url}
       />
+      <SemanticSEO 
+        pageType="homepage"
+        organizationData={{
+          name: "Express English Hub",
+          description: "Platform persiapan TOEFL ITP dan TOEFL iBT terbaik di Indonesia dengan trainer bersertifikat ETS dan metode pembelajaran terintegrasi AI.",
+          logo: "/logo.jpg",
+          phone: "+62-21-XXXX-XXXX",
+          email: "info@expressenglishhub.com",
+          socialMedia: [
+            "https://www.facebook.com/ExpressEnglishHub",
+            "https://www.instagram.com/expressenglishhub",
+            "https://www.youtube.com/@ExpressEnglishHub"
+          ]
+        }}
+      />
       <style>{keyframes}</style>
       <div className="min-h-screen bg-white text-gray-900">
         {/* Hero Section - Enhanced with Emotional Wording and Elegant Design */}
