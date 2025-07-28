@@ -56,81 +56,42 @@ const AdminDashboard = () => {
     return process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
   };
 
-  // Get auth token from localStorage
-  const getAuthToken = () => {
-    return localStorage.getItem('admin_token');
-  };
-
-  // Set auth headers
-  const getAuthHeaders = () => {
-    const token = getAuthToken();
+  // Set headers for requests
+  const getRequestHeaders = () => {
     return {
-      'Content-Type': 'application/json',
-      ...(token && { 'Authorization': `Bearer ${token}` })
+      'Content-Type': 'application/json'
     };
   };
 
   useEffect(() => {
-    checkAuthStatus();
+    checkAccessPermission();
   }, []);
 
-  const checkAuthStatus = async () => {
-    setIsCheckingAuth(true);
+  const checkAccessPermission = async () => {
+    setIsCheckingAccess(true);
     try {
-      const token = getAuthToken();
-      if (!token) {
-        setIsAuthenticated(false);
-        setIsCheckingAuth(false);
-        return;
-      }
-
-      const response = await fetch(`${getBackendUrl()}/api/auth-check`, {
-        headers: getAuthHeaders()
+      const response = await fetch(`${getBackendUrl()}/api/admin-access`, {
+        headers: getRequestHeaders()
       });
       
-      if (response.ok) {
-        const result = await response.json();
-        if (result.success && result.authenticated) {
-          setIsAuthenticated(true);
-          setUserInfo(result);
-          loadArticles();
-          loadConfig();
-        } else {
-          setIsAuthenticated(false);
-          localStorage.removeItem('admin_token');
-        }
+      const result = await response.json();
+      
+      if (result.success && result.authorized) {
+        setHasAccess(true);
+        setUserInfo({ username: 'admin', ip: result.ip });
+        setAccessMessage('Access granted');
+        loadArticles();
+        loadConfig();
       } else {
-        setIsAuthenticated(false);
-        localStorage.removeItem('admin_token');
+        setHasAccess(false);
+        setAccessMessage(result.message || 'Access denied');
       }
     } catch (error) {
-      console.error('Auth check error:', error);
-      setIsAuthenticated(false);
+      console.error('Access check error:', error);
+      setHasAccess(false);
+      setAccessMessage('Unable to verify access permission');
     } finally {
-      setIsCheckingAuth(false);
-    }
-  };
-
-  const handleLoginSuccess = (userData) => {
-    localStorage.setItem('admin_token', userData.token);
-    setIsAuthenticated(true);
-    setUserInfo(userData);
-    loadArticles();
-    loadConfig();
-  };
-
-  const handleLogout = async () => {
-    try {
-      await fetch(`${getBackendUrl()}/api/logout`, {
-        method: 'POST',
-        headers: getAuthHeaders()
-      });
-      localStorage.removeItem('admin_token');
-      setIsAuthenticated(false);
-      setUserInfo(null);
-      setArticles([]);
-    } catch (error) {
-      console.error('Logout error:', error);
+      setIsCheckingAccess(false);
     }
   };
 
