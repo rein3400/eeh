@@ -40,19 +40,35 @@ const AdminDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
+  const [config, setConfig] = useState({
+    openrouter_model: '',
+    openrouter_api_key: ''
+  });
   const [generatorForm, setGeneratorForm] = useState({
     keywords: '',
     count: 1,
     language: 'id'
   });
 
-  const [user] = useState({
-    name: 'Admin EEH',
-    email: 'admin@expressenglishhub.com',
-    avatar: '/logo.jpg'
-  });
+  // Get backend URL from environment
+  const getBackendUrl = () => {
+    return process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+  };
 
-  // Check authentication on component mount
+  // Get auth token from localStorage
+  const getAuthToken = () => {
+    return localStorage.getItem('admin_token');
+  };
+
+  // Set auth headers
+  const getAuthHeaders = () => {
+    const token = getAuthToken();
+    return {
+      'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` })
+    };
+  };
+
   useEffect(() => {
     checkAuthStatus();
   }, []);
@@ -60,18 +76,31 @@ const AdminDashboard = () => {
   const checkAuthStatus = async () => {
     setIsCheckingAuth(true);
     try {
-      const response = await fetch('/api/auth-check.php', {
-        credentials: 'include'
+      const token = getAuthToken();
+      if (!token) {
+        setIsAuthenticated(false);
+        setIsCheckingAuth(false);
+        return;
+      }
+
+      const response = await fetch(`${getBackendUrl()}/api/auth-check`, {
+        headers: getAuthHeaders()
       });
-      const result = await response.json();
       
-      if (result.success && result.authenticated) {
-        setIsAuthenticated(true);
-        setUserInfo(result);
-        loadArticles(); // Load articles after authentication
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success && result.authenticated) {
+          setIsAuthenticated(true);
+          setUserInfo(result);
+          loadArticles();
+          loadConfig();
+        } else {
+          setIsAuthenticated(false);
+          localStorage.removeItem('admin_token');
+        }
       } else {
         setIsAuthenticated(false);
-        localStorage.removeItem('admin_session');
+        localStorage.removeItem('admin_token');
       }
     } catch (error) {
       console.error('Auth check error:', error);
@@ -81,19 +110,21 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleLoginSuccess = (userData: any) => {
+  const handleLoginSuccess = (userData) => {
+    localStorage.setItem('admin_token', userData.token);
     setIsAuthenticated(true);
     setUserInfo(userData);
     loadArticles();
+    loadConfig();
   };
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth-check.php', {
+      await fetch(`${getBackendUrl()}/api/logout`, {
         method: 'POST',
-        credentials: 'include'
+        headers: getAuthHeaders()
       });
-      localStorage.removeItem('admin_session');
+      localStorage.removeItem('admin_token');
       setIsAuthenticated(false);
       setUserInfo(null);
       setArticles([]);
