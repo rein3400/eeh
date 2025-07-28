@@ -210,7 +210,7 @@ const AdminDashboard = () => {
     try {
       const response = await fetch(`${getBackendUrl()}/api/config`, {
         method: 'POST',
-        headers: getAuthHeaders(),
+        headers: getRequestHeaders(),
         body: JSON.stringify(newConfig)
       });
 
