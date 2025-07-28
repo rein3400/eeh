@@ -214,11 +214,11 @@ frontend:
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
 
 test_plan:
   current_focus: []
-  stuck_tasks: []
+  stuck_tasks: ["OpenRouter API Integration"]
   test_all: false
   test_priority: "completed"
 
@@ -227,3 +227,5 @@ agent_communication:
     message: "Starting comprehensive frontend testing for Express English Hub TOEFL platform. Will test all major functionality including navigation, blog, admin panel, and UI elements."
   - agent: "testing"
     message: "✅ COMPREHENSIVE TESTING COMPLETED SUCCESSFULLY - All 7 major frontend features tested and working properly. Homepage navigation, blog functionality, admin panel access with login, admin dashboard features, contact page, responsive UI/UX elements, and performance/assets all functioning as expected. Screenshots captured for verification. Only minor Google Analytics warning (expected). Platform is ready for production use."
+  - agent: "testing"
+    message: "🔧 COMPREHENSIVE BACKEND TESTING COMPLETED - Tested all 7 major backend components. Authentication system, articles management, configuration management, contact form API, health checks, and MongoDB integration all working properly. Only critical issue: OpenRouter API integration failing due to invalid/expired API key (401 authentication error). Backend core functionality is solid with 87.5% success rate (14/16 tests passed)."
