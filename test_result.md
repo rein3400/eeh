@@ -1,6 +1,6 @@
 ---
 backend:
-  - task: "Authentication System"
+  - task: "IP Whitelisting Authentication System"
     implemented: true
     working: true
     file: "server.py"
@@ -14,6 +14,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✓ PASSED - Admin login with credentials 'Reze'/'Denji' works successfully. JWT token authentication implemented correctly. Auth-check endpoint validates tokens properly. Logout functionality working. Invalid credentials correctly rejected with 401 status. Unauthenticated requests properly blocked."
+      - working: true
+        agent: "testing"
+        comment: "✓ PASSED - IP Whitelisting system successfully implemented. /api/admin-access endpoint correctly verifies IP 192.168.100.15 and grants access. Non-whitelisted IPs are properly blocked with 403 status. Old JWT endpoints (/api/login, /api/auth-check, /api/logout) have been correctly removed and return 404. All protected admin endpoints now use IP whitelisting instead of JWT authentication."
 
   - task: "Articles Management"
     implemented: true
@@ -29,6 +32,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "✓ PASSED - GET /api/articles endpoint works correctly, returns articles list with proper structure. DELETE /api/delete-article endpoint functions properly with authentication. Article deletion correctly returns 404 for non-existent articles. Database integration working for article storage and retrieval."
+      - working: true
+        agent: "testing"
+        comment: "✓ PASSED - Articles management working with new IP whitelisting system. GET /api/articles endpoint accessible publicly. DELETE /api/delete-article endpoint properly protected with IP whitelisting - correctly blocks non-whitelisted IPs with 403 status and allows whitelisted IP access. Database integration functioning properly."
 
   - task: "OpenRouter API Integration"
     implemented: true
@@ -44,6 +50,9 @@ backend:
       - working: false
         agent: "testing"
         comment: "❌ FAILED - OpenRouter API returns 401 'No auth credentials found' error. API key appears to be invalid or expired. The backend code correctly formats the Authorization header and request structure. Environment variables are loaded properly. This is likely an API key issue that needs to be resolved with a valid OpenRouter API key."
+      - working: false
+        agent: "testing"
+        comment: "❌ FAILED - OpenRouter API integration still failing with 401 'No auth credentials found' error. Article generation endpoint now properly protected with IP whitelisting (correctly blocks non-whitelisted IPs), but OpenRouter API key remains invalid/expired. The IP whitelisting authentication works correctly, but the external API integration needs a valid API key to function."
 
   - task: "Configuration Management"
     implemented: true
