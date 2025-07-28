@@ -141,7 +141,7 @@ const AdminDashboard = () => {
 
     setIsGenerating(true);
     try {
-      const response = await fetch('http://localhost:8080/api/generate-article.php', {
+      const response = await fetch('/api/generate-article.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
