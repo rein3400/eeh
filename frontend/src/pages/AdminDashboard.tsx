@@ -37,9 +37,10 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('articles');
   const [articles, setArticles] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-  const [userInfo, setUserInfo] = useState(null);
+  const [isCheckingAccess, setIsCheckingAccess] = useState(true);
+  const [hasAccess, setHasAccess] = useState(false);
+  const [accessMessage, setAccessMessage] = useState('');
+  const [userInfo, setUserInfo] = useState({ username: 'admin', ip: 'unknown' });
   const [config, setConfig] = useState({
     openrouter_model: '',
     openrouter_api_key: ''
