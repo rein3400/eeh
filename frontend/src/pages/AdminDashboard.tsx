@@ -478,21 +478,50 @@ const AdminDashboard = () => {
     }
   };
 
-  // Show loading screen while checking authentication
-  if (isCheckingAuth) {
+  // Show loading screen while checking access
+  if (isCheckingAccess) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#e97311] mx-auto mb-4"></div>
-          <p className="text-gray-600">Checking authentication...</p>
+          <p className="text-gray-600">Checking access permission...</p>
         </div>
       </div>
     );
   }
 
-  // Show login form if not authenticated
-  if (!isAuthenticated) {
-    return <LoginForm onLoginSuccess={handleLoginSuccess} />;
+  // Show access denied screen if IP is not whitelisted
+  if (!hasAccess) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="max-w-md w-full bg-white rounded-xl shadow-2xl overflow-hidden">
+          <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 text-center">
+            <div className="flex items-center justify-center mb-4">
+              <Shield className="h-8 w-8 text-white mr-2" />
+              <h1 className="text-2xl font-bold text-white">Access Denied</h1>
+            </div>
+            <p className="text-red-100 text-sm">Express English Hub Admin</p>
+          </div>
+          <div className="p-8 text-center">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Unauthorized Access
+            </h2>
+            <p className="text-gray-600 mb-6">
+              {accessMessage}
+            </p>
+            <p className="text-sm text-gray-500">
+              Only whitelisted IP addresses can access the admin panel.
+            </p>
+            <button
+              onClick={checkAccessPermission}
+              className="mt-4 bg-[#e97311] text-white px-6 py-2 rounded-lg hover:bg-[#d4640e] transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
