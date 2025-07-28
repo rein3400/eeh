@@ -373,13 +373,13 @@ const Home = () => {
                 {/* Emotional Subtitle */}
                 <div className={`max-w-4xl mx-auto px-4 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
                      style={isVisible ? {...animations.fadeInUp, animationDelay: '0.3s'} : {}}>
-                  <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-4 sm:mb-6 leading-relaxed font-light">
+                  <div className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-4 sm:mb-6 leading-relaxed font-light">
                     Setiap langkah menuju <span className="text-[#e87211] font-semibold">studi luar negeri</span> dimulai dari sini.
-                  </p>
-                  <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+                  </div>
+                  <div className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
                     Bergabunglah dengan ratusan siswa yang telah merasakan transformasi hidup melalui 
                     <span className="text-[#e87211] font-semibold"> persiapan TOEFL terbaik</span> bersama kami.
-                  </p>
+                  </div>
                 </div>
               </div>
 
