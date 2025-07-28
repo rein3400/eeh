@@ -20,26 +20,25 @@ const LoginForm: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     setError('');
 
     try {
-      const response = await fetch('/api/login.php', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include',
         body: JSON.stringify(credentials)
       });
 
-      const result = await response.json();
-
-      if (result.success) {
-        localStorage.setItem('admin_session', JSON.stringify({
-          token: result.token,
-          username: result.username,
-          loginTime: result.login_time
-        }));
-        onLoginSuccess(result);
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          onLoginSuccess(result);
+        } else {
+          setError(result.message || 'Login failed');
+        }
       } else {
-        setError(result.error || 'Login failed');
+        const errorResult = await response.json();
+        setError(errorResult.detail || 'Login failed');
       }
     } catch (err) {
       setError('Network error. Please try again.');
