@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import our modules
-from models import *
+from models import ArticleCreate, Article, ContactRequest, ConfigUpdate, SEOAnalysisRequest, PluginAction
 from database import connect_to_mongo, get_collection, get_database
 from auth import get_current_user, verify_ip_whitelist
 
