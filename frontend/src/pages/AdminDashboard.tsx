@@ -544,14 +544,10 @@ const AdminDashboard = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <Bell className="h-4 w-4" />
-                <span>Howdy, {userInfo?.username || user.name}</span>
-                <button 
-                  onClick={handleLogout}
-                  className="hover:text-red-300 flex items-center"
-                  title="Logout"
-                >
-                  <LogOut className="h-4 w-4" />
-                </button>
+                <span>Welcome, {userInfo?.username || 'Admin'} (IP: {userInfo?.ip || 'Unknown'})</span>
+                <a href="/" className="hover:text-blue-300 flex items-center" title="Visit Site">
+                  <Globe className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>
