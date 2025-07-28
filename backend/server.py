@@ -19,6 +19,10 @@ import zipfile
 import shutil
 from bs4 import BeautifulSoup
 import logging
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Import our modules
 from models import *
