@@ -11,98 +11,98 @@
       "test": "Health Check",
       "status": "PASS",
       "details": "Service healthy: Express English Hub API",
-      "timestamp": "2025-07-28 14:00:49"
+      "timestamp": "2025-07-28 14:03:12"
     },
     {
       "test": "Root Endpoint",
       "status": "PASS",
       "details": "Version: 1.0.0",
-      "timestamp": "2025-07-28 14:00:49"
+      "timestamp": "2025-07-28 14:03:12"
     },
     {
       "test": "Invalid Login",
       "status": "PASS",
       "details": "Correctly rejected invalid credentials",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Admin Login",
       "status": "PASS",
       "details": "Token received for user: Reze",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Auth Check",
       "status": "PASS",
       "details": "Authenticated as: Reze",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Auth Check Without Token",
       "status": "PASS",
       "details": "Correctly rejected request without token",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Get Articles",
       "status": "PASS",
       "details": "Retrieved 0 articles",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Generate Article Without Auth",
       "status": "PASS",
       "details": "Correctly rejected unauthenticated request",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:13"
     },
     {
       "test": "Generate Article",
       "status": "FAIL",
       "details": "HTTP 500: {\"detail\":\"API request failed with code: 401 Response: {\\\"error\\\":{\\\"message\\\":\\\"No auth credentials found\\\",\\\"code\\\":401}}\"}",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Delete Article",
       "status": "SKIP",
       "details": "No generated articles to delete",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Delete Nonexistent Article",
       "status": "PASS",
       "details": "Correctly returned 404 for non-existent article",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Get Config",
       "status": "PASS",
       "details": "Retrieved config - Model: google/gemini-2.5-flash",
-      "timestamp": "2025-07-28 14:00:50"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Update Config",
       "status": "PASS",
       "details": "Configuration updated successfully",
-      "timestamp": "2025-07-28 14:00:51"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Contact Form",
       "status": "PASS",
       "details": "Contact form submitted successfully",
-      "timestamp": "2025-07-28 14:00:51"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Contact Form Validation",
       "status": "PASS",
       "details": "Correctly rejected invalid contact data",
-      "timestamp": "2025-07-28 14:00:51"
+      "timestamp": "2025-07-28 14:03:14"
     },
     {
       "test": "Logout",
       "status": "PASS",
       "details": "Logout successful",
-      "timestamp": "2025-07-28 14:00:51"
+      "timestamp": "2025-07-28 14:03:14"
     }
   ],
-  "timestamp": "2025-07-28T14:00:51.042788"
+  "timestamp": "2025-07-28T14:03:14.234477"
 }
