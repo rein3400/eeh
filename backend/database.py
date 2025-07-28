@@ -33,7 +33,7 @@ def close_mongo_connection():
 
 def get_database() -> Database:
     """Get database instance"""
-    if not mongo_db.database:
+    if mongo_db.database is None:
         connect_to_mongo()
     return mongo_db.database
 
