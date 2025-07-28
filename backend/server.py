@@ -1,7 +1,6 @@
-from fastapi import FastAPI, HTTPException, Depends, status, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, Depends, status, UploadFile, File, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from fastapi.security import HTTPBearer
 import os
 import json
 import httpx
@@ -27,7 +26,7 @@ load_dotenv()
 # Import our modules
 from models import *
 from database import connect_to_mongo, get_collection, get_database
-from auth import authenticate_user, create_access_token, get_current_user, create_session, get_session, delete_session
+from auth import get_current_user, verify_ip_whitelist
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
