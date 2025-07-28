@@ -78,7 +78,7 @@ sessions_collection = None
 
 def get_sessions_collection():
     global sessions_collection
-    if not sessions_collection:
+    if sessions_collection is None:
         sessions_collection = get_collection("sessions")
     return sessions_collection
 
