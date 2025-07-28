@@ -44,7 +44,8 @@ const Blog: React.FC = () => {
   const loadDynamicArticles = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/articles.php');
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/articles`);
       const data = await response.json();
       if (data.success && data.articles) {
         const formattedArticles = data.articles.map((article: any, index: number) => ({
