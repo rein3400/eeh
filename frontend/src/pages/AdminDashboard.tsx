@@ -28,10 +28,10 @@ import {
   Clock,
   Filter,
   Download,
-  RefreshCw
+  RefreshCw,
+  Shield
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import LoginForm from '../components/LoginForm';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('articles');
