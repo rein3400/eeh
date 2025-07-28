@@ -62,7 +62,7 @@ const AdminDashboard = () => {
   const checkAuthStatus = async () => {
     setIsCheckingAuth(true);
     try {
-      const response = await fetch('http://localhost:8080/api/auth-check.php', {
+      const response = await fetch('/api/auth-check.php', {
         credentials: 'include'
       });
       const result = await response.json();
