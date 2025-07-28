@@ -368,7 +368,7 @@ async def get_config(req: Request, current_user: dict = Depends(get_current_user
         )
 
 @app.post("/api/config")
-async def update_config(request: ConfigUpdate, current_user: dict = Depends(get_current_user)):
+async def update_config(request: ConfigUpdate, req: Request, current_user: dict = Depends(get_current_user)):
     """Update configuration"""
     try:
         config_collection = get_collection("config")
