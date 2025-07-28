@@ -1,0 +1,39 @@
+User-agent: *
+Allow: /
+
+# Enhanced Sitemap
+Sitemap: https://expressenglishhub.com/sitemap.xml
+
+# Disallow admin or sensitive pages
+Disallow: /eeh-admin
+Disallow: /api/
+Disallow: /*.json$
+
+# Allow important pages for SEO crawling
+Allow: /
+Allow: /products
+Allow: /toefl-itp  
+Allow: /toefl-ibt
+Allow: /contact
+Allow: /blog
+Allow: /articles/
+
+# Crawl optimization
+Crawl-delay: 1
+
+# Additional directives for better SEO
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot  
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
