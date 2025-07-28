@@ -183,7 +183,7 @@ const AdminDashboard = () => {
       try {
         const response = await fetch(`${getBackendUrl()}/api/delete-article?filename=${encodeURIComponent(filename)}`, {
           method: 'DELETE',
-          headers: getAuthHeaders()
+          headers: getRequestHeaders()
         });
 
         if (response.ok) {
