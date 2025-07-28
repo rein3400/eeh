@@ -148,7 +148,7 @@ const AdminDashboard = () => {
     try {
       const response = await fetch(`${getBackendUrl()}/api/generate-article`, {
         method: 'POST',
-        headers: getAuthHeaders(),
+        headers: getRequestHeaders(),
         body: JSON.stringify({
           keywords: generatorForm.keywords,
           count: generatorForm.count,
