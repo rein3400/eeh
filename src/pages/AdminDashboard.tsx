@@ -91,7 +91,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:8080/api/auth-check.php', {
+      await fetch('/api/auth-check.php', {
         method: 'POST',
         credentials: 'include'
       });
