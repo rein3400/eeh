@@ -105,7 +105,7 @@ const AdminDashboard = () => {
   const loadArticles = async () => {
     try {
       const response = await fetch(`${getBackendUrl()}/api/articles`, {
-        headers: getAuthHeaders()
+        headers: getRequestHeaders()
       });
       
       if (response.ok) {
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
   const loadConfig = async () => {
     try {
       const response = await fetch(`${getBackendUrl()}/api/config`, {
-        headers: getAuthHeaders()
+        headers: getRequestHeaders()
       });
       
       if (response.ok) {
