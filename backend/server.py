@@ -140,7 +140,7 @@ async def get_articles():
         )
 
 @app.post("/api/generate-article")
-async def generate_article(request: ArticleCreate, current_user: dict = Depends(get_current_user)):
+async def generate_article(request: ArticleCreate, req: Request, current_user: dict = Depends(get_current_user)):
     """Generate articles using OpenRouter API"""
     try:
         openrouter_config = get_openrouter_config()
