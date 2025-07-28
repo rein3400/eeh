@@ -313,7 +313,7 @@ async def generate_article(request: ArticleCreate, req: Request, current_user: d
         )
 
 @app.delete("/api/delete-article")
-async def delete_article(filename: str, current_user: dict = Depends(get_current_user)):
+async def delete_article(filename: str, req: Request, current_user: dict = Depends(get_current_user)):
     """Delete article"""
     try:
         # Delete from database
