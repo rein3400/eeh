@@ -136,32 +136,46 @@ const AdminDashboard = () => {
   const sidebarItems = [
     { id: 'articles', label: 'Articles', icon: FileText },
     { id: 'generator', label: 'Blog Generator', icon: Plus },
-    { id: 'seo', label: 'SEO Dashboard', icon: TrendingUp },
-    { id: 'plugins', label: 'Plugin Manager', icon: Upload },
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
   // Load articles from backend
   const loadArticles = async () => {
     try {
-      const response = await fetch('/api/articles.php', {
-        credentials: 'include'
+      const response = await fetch(`${getBackendUrl()}/api/articles`, {
+        headers: getAuthHeaders()
       });
-      const data = await response.json();
       
-      if (response.status === 401) {
-        // Session expired
-        setIsAuthenticated(false);
-        localStorage.removeItem('admin_session');
-        return;
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          setArticles(result.articles || []);
+        }
       }
-      
-      setArticles(data.articles || []);
     } catch (error) {
-      console.error('Error loading articles:', error);
+      console.error('Load articles error:', error);
     }
   };
 
+  // Load configuration
+  const loadConfig = async () => {
+    try {
+      const response = await fetch(`${getBackendUrl()}/api/config`, {
+        headers: getAuthHeaders()
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          setConfig(result.config || {});
+        }
+      }
+    } catch (error) {
+      console.error('Load config error:', error);
+    }
+  };
+
+  // Generate article
   const generateArticles = async () => {
     if (!generatorForm.keywords.trim()) {
       alert('Please enter keywords');
@@ -170,67 +184,89 @@ const AdminDashboard = () => {
 
     setIsGenerating(true);
     try {
-      const response = await fetch('/api/generate-article.php', {
+      const response = await fetch(`${getBackendUrl()}/api/generate-article`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(generatorForm)
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          keywords: generatorForm.keywords,
+          count: generatorForm.count,
+          language: generatorForm.language
+        })
       });
 
-      if (response.status === 401) {
-        // Session expired
-        setIsAuthenticated(false);
-        localStorage.removeItem('admin_session');
-        alert('Session expired. Please login again.');
-        return;
-      }
-
-      const result = await response.json();
-      if (result.success) {
-        alert(`Successfully generated ${result.count} articles!`);
-        loadArticles();
-        setGeneratorForm({ keywords: '', count: 1, language: 'id' });
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          alert(`Successfully generated ${result.count} article(s)!`);
+          setGeneratorForm({ keywords: '', count: 1, language: 'id' });
+          loadArticles(); // Reload articles list
+        } else {
+          throw new Error(result.error || 'Generation failed');
+        }
       } else {
-        alert('Error generating articles: ' + result.error);
+        const errorResult = await response.json();
+        throw new Error(errorResult.detail || 'Generation failed');
       }
     } catch (error) {
-      alert('Error: ' + error.message);
+      console.error('Generation error:', error);
+      alert(`Generation failed: ${error.message}`);
     } finally {
       setIsGenerating(false);
     }
   };
 
+  // Delete article
   const deleteArticle = async (filename) => {
     if (confirm('Are you sure you want to delete this article?')) {
       try {
-        const response = await fetch('/api/delete-article.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify({ filename })
+        const response = await fetch(`${getBackendUrl()}/api/delete-article?filename=${encodeURIComponent(filename)}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
         });
 
-        if (response.status === 401) {
-          // Session expired
-          setIsAuthenticated(false);
-          localStorage.removeItem('admin_session');
-          alert('Session expired. Please login again.');
-          return;
-        }
-
-        const result = await response.json();
-        if (result.success) {
-          loadArticles();
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            alert('Article deleted successfully!');
+            loadArticles(); // Reload articles list
+          } else {
+            throw new Error(result.error || 'Delete failed');
+          }
         } else {
-          alert('Error deleting article: ' + result.error);
+          const errorResult = await response.json();
+          throw new Error(errorResult.detail || 'Delete failed');
         }
       } catch (error) {
-        alert('Error: ' + error.message);
+        console.error('Delete error:', error);
+        alert(`Delete failed: ${error.message}`);
       }
+    }
+  };
+
+  // Update configuration
+  const updateConfig = async (newConfig) => {
+    try {
+      const response = await fetch(`${getBackendUrl()}/api/config`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(newConfig)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          alert('Configuration updated successfully!');
+          loadConfig(); // Reload config
+        } else {
+          throw new Error(result.error || 'Update failed');
+        }
+      } else {
+        const errorResult = await response.json();
+        throw new Error(errorResult.detail || 'Update failed');
+      }
+    } catch (error) {
+      console.error('Update config error:', error);
+      alert(`Update failed: ${error.message}`);
     }
   };
 
