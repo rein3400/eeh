@@ -44,9 +44,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global variables
-security = HTTPBearer()
-
 @app.on_event("startup")
 async def startup_event():
     """Initialize database connection on startup"""
