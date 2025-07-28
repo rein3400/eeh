@@ -32,8 +32,6 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import LoginForm from '../components/LoginForm';
-import SEODashboard from '../components/SEODashboard';
-import PluginManager from '../components/PluginManager';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('articles');
