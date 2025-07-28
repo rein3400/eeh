@@ -82,80 +82,29 @@ def get_openrouter_config():
         "model": os.getenv("OPENROUTER_MODEL", "google/gemini-2.5-flash")
     }
 
-# Authentication endpoints
-@app.post("/api/login", response_model=LoginResponse)
-async def login(request: LoginRequest):
-    """Admin login endpoint"""
+# IP Whitelisting endpoint
+@app.get("/api/admin-access")
+async def admin_access_check(request: Request):
+    """Check if IP is whitelisted for admin access"""
     try:
-        if authenticate_user(request.username, request.password):
-            # Create JWT token
-            access_token_expires = timedelta(hours=24)
-            access_token = create_access_token(
-                data={"sub": request.username}, expires_delta=access_token_expires
-            )
-            
-            # Also create session for compatibility
-            session_token = create_session(request.username)
-            
-            return LoginResponse(
-                success=True,
-                message="Login successful",
-                token=access_token,
-                username=request.username,
-                login_time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            )
-        else:
-            # Add small delay to prevent brute force
-            await asyncio.sleep(1)
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid username or password"
-            )
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Login error: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Authentication error: {str(e)}"
-        )
-
-@app.get("/api/auth-check")
-async def auth_check(current_user: dict = Depends(get_current_user)):
-    """Check authentication status"""
-    try:
+        verification = verify_ip_whitelist(request)
         return {
             "success": True,
-            "authenticated": True,
-            "username": current_user["username"],
-            "login_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "authorized": True,
+            "ip": verification["ip"],
+            "message": "Access granted"
         }
-    except HTTPException:
+    except HTTPException as e:
         return {
-            "success": True,
-            "authenticated": False
+            "success": False,
+            "authorized": False,
+            "message": e.detail
         }
     except Exception as e:
-        logger.error(f"Auth check error: {e}")
+        logger.error(f"Admin access check error: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Authentication check error: {str(e)}"
-        )
-
-@app.post("/api/logout")
-async def logout(current_user: dict = Depends(get_current_user)):
-    """Logout endpoint"""
-    try:
-        # In a real implementation, you might want to blacklist the JWT token
-        return {
-            "success": True,
-            "message": "Logged out successfully"
-        }
-    except Exception as e:
-        logger.error(f"Logout error: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Logout error: {str(e)}"
+            detail=f"Access check error: {str(e)}"
         )
 
 # Articles endpoints
