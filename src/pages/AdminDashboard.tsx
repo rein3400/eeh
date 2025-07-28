@@ -115,7 +115,7 @@ const AdminDashboard = () => {
   // Load articles from backend
   const loadArticles = async () => {
     try {
-      const response = await fetch('/api/articles.php', {
+      const response = await fetch('http://localhost:8080/api/articles.php', {
         credentials: 'include'
       });
       const data = await response.json();
