@@ -8,109 +8,94 @@
 
   <url>
     <loc>https://expressenglishhub.com/</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
+      <image:title>Express English Hub - TOEFL Preparation Platform</image:title>
+      <image:caption>Platform persiapan TOEFL ITP dan iBT terbaik dengan trainer bersertifikat ETS</image:caption>
     </image:image>
   </url>
-  <url>
-    <loc>https://expressenglishhub.com/products</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-    <image:image>
-      <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
-    </image:image>
-  </url>
+
   <url>
     <loc>https://expressenglishhub.com/toefl-itp</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
+      <image:title>TOEFL ITP Preparation Course</image:title>
+      <image:caption>Kursus persiapan TOEFL ITP lengkap dengan strategi dan tips sukses</image:caption>
     </image:image>
   </url>
+
   <url>
     <loc>https://expressenglishhub.com/toefl-ibt</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
+      <image:title>TOEFL iBT Preparation Course</image:title>
+      <image:caption>Persiapan TOEFL iBT komprehensif untuk skor tinggi</image:caption>
     </image:image>
   </url>
+
   <url>
-    <loc>https://expressenglishhub.com/contact</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-    <image:image>
-      <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://expressenglishhub.com/blog</loc>
-    <lastmod>2025-07-27</lastmod>
+    <loc>https://expressenglishhub.com/products</loc>
+    <lastmod>2025-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>Express English Hub - TOEFL Preparation</image:title>
-      <image:caption>Professional TOEFL preparation platform</image:caption>
+      <image:title>TOEFL Course Products</image:title>
+      <image:caption>Paket kursus TOEFL terlengkap untuk berbagai kebutuhan</image:caption>
     </image:image>
   </url>
+
   <url>
-    <loc>https://expressenglishhub.com/articles/10_Tips_Sukses_TOEFL_Reading_2024-12-15_10-30-00_1.html</loc>
-    <lastmod>2025-07-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://expressenglishhub.com/blog</loc>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
     <mobile:mobile/>
-    <news:news>
-      <news:publication>
-        <news:name>Express English Hub</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-07-27</news:publication_date>
-      <news:title>10 Tips Sukses TOEFL Reading - Express English Hub</news:title>
-      <news:keywords></news:keywords>
-    </news:news>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
-      <image:title>10 Tips Sukses TOEFL Reading - Express English Hub</image:title>
-      <image:caption>Pelajari 10 tips efektif untuk meningkatkan skor TOEFL Reading section. Strategi terbukti dari expert untuk meraih skor tinggi.</image:caption>
+      <image:title>TOEFL Tips and Strategies Blog</image:title>
+      <image:caption>Tips, strategi, dan panduan TOEFL terbaru dari expert</image:caption>
     </image:image>
   </url>
+
+  <url>
+    <loc>https://expressenglishhub.com/contact</loc>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
+      <image:title>Contact Express English Hub</image:title>
+      <image:caption>Hubungi kami untuk konsultasi TOEFL gratis</image:caption>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://expressenglishhub.com/articles/Most_Effective_TOEFL_Listening_Solutions_1753628618561_1.html</loc>
-    <lastmod>2025-07-27</lastmod>
+    <lastmod>2025-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
     <news:news>
       <news:publication>
         <news:name>Express English Hub</news:name>
-        <news:language>en</news:language>
+        <news:language>id</news:language>
       </news:publication>
-      <news:publication_date>2025-07-27</news:publication_date>
+      <news:publication_date>2025-07-28</news:publication_date>
       <news:title>Most Effective TOEFL Listening Solutions</news:title>
       <news:keywords>TOEFL Listening, TOEFL Speaking, TOEFL Writing</news:keywords>
     </news:news>
@@ -120,18 +105,19 @@
       <image:caption>Complete TOEFL Listening guide for beginners to advanced. Get tips, tricks, and strategies from experts. Start now!</image:caption>
     </image:image>
   </url>
+
   <url>
     <loc>https://expressenglishhub.com/articles/Panduan_Lengkap_TOEFL_Score_600_untuk_Pemula_2025_1753628802994_1.html</loc>
-    <lastmod>2025-07-27</lastmod>
+    <lastmod>2025-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
     <news:news>
       <news:publication>
         <news:name>Express English Hub</news:name>
-        <news:language>en</news:language>
+        <news:language>id</news:language>
       </news:publication>
-      <news:publication_date>2025-07-27</news:publication_date>
+      <news:publication_date>2025-07-28</news:publication_date>
       <news:title>Panduan Lengkap TOEFL Score 600+ untuk Pemula 2025</news:title>
       <news:keywords>TOEFL Score 600+, High TOEFL Score Tips, TOEFL Achievement</news:keywords>
     </news:news>
@@ -141,20 +127,43 @@
       <image:caption>Belajar TOEFL Score 600+ dengan metode terbukti efektif. Tutorial komprehensif, tips praktis, dan panduan detail untuk sukses Anda.</image:caption>
     </image:image>
   </url>
+
   <url>
-    <loc>https://expressenglishhub.com/articles/TOEFL_preparation_tips_1753626897091_1.html</loc>
-    <lastmod>2025-07-27</lastmod>
+    <loc>https://expressenglishhub.com/articles/Strategi_TOEFL_ITP_Score_600_Persiapan_Maksimal_20_2025-07-27_15-54-41_1.html</loc>
+    <lastmod>2025-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
     <news:news>
       <news:publication>
         <news:name>Express English Hub</news:name>
-        <news:language>en</news:language>
+        <news:language>id</news:language>
       </news:publication>
-      <news:publication_date>2025-07-27</news:publication_date>
+      <news:publication_date>2025-07-28</news:publication_date>
+      <news:title>Strategi TOEFL ITP Score 600: Persiapan Maksimal 2025</news:title>
+      <news:keywords>TOEFL ITP score 600, study strategies, preparation tips 2025, cara meraih TOEFL ITP 600, tips persiapan TOEFL, belajar TOEFL 2025, struktur TOEFL ITP, peningkatan skor TOEFL, tes bahasa Inggris, beasiswa</news:keywords>
+    </news:news>
+    <image:image>
+      <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
+      <image:title>Strategi TOEFL ITP Score 600: Persiapan Maksimal 2025</image:title>
+      <image:caption>Raih TOEFL ITP score 600+ di tahun 2025 dengan strategi belajar jitu, tips persiapan komprehensif, dan panduan lengkap dari Express English Hub. Tingkatkan kemampuan bahasa Inggris Anda!</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://expressenglishhub.com/articles/TOEFL_preparation_tips_1753626897091_1.html</loc>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <mobile:mobile/>
+    <news:news>
+      <news:publication>
+        <news:name>Express English Hub</news:name>
+        <news:language>id</news:language>
+      </news:publication>
+      <news:publication_date>2025-07-28</news:publication_date>
       <news:title>Article about TOEFL preparation tips - 1</news:title>
-      <news:keywords></news:keywords>
+      <news:keywords>TOEFL, preparation, tips</news:keywords>
     </news:news>
     <image:image>
       <image:loc>https://expressenglishhub.com/logo.jpg</image:loc>
@@ -162,4 +171,5 @@
       <image:caption>Professional article about TOEFL preparation tips</image:caption>
     </image:image>
   </url>
+
 </urlset>
