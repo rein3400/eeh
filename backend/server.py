@@ -347,7 +347,7 @@ async def delete_article(filename: str, req: Request, current_user: dict = Depen
 
 # Configuration endpoints
 @app.get("/api/config")
-async def get_config(current_user: dict = Depends(get_current_user)):
+async def get_config(req: Request, current_user: dict = Depends(get_current_user)):
     """Get current configuration"""
     try:
         config = get_openrouter_config()
