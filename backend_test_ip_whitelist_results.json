@@ -1,0 +1,114 @@
+{
+  "summary": {
+    "total": 17,
+    "passed": 15,
+    "failed": 1,
+    "skipped": 1,
+    "success_rate": "88.2%"
+  },
+  "tests": [
+    {
+      "test": "Health Check",
+      "status": "PASS",
+      "details": "Service healthy: Express English Hub API",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Root Endpoint",
+      "status": "PASS",
+      "details": "Version: 1.0.0",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Admin Access - Whitelisted IP",
+      "status": "PASS",
+      "details": "Access granted for IP: 192.168.100.15",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Admin Access - Non-whitelisted IP",
+      "status": "PASS",
+      "details": "Correctly denied access for non-whitelisted IP",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Old Endpoint Removed - /login",
+      "status": "PASS",
+      "details": "Endpoint /login correctly removed",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Old Endpoint Removed - /auth-check",
+      "status": "PASS",
+      "details": "Endpoint /auth-check correctly removed",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Old Endpoint Removed - /logout",
+      "status": "PASS",
+      "details": "Endpoint /logout correctly removed",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Get Articles",
+      "status": "PASS",
+      "details": "Retrieved 0 articles",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Generate Article - Non-whitelisted IP",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-28 14:50:19"
+    },
+    {
+      "test": "Generate Article - IP Whitelisted",
+      "status": "FAIL",
+      "details": "HTTP 500: {\"detail\":\"API request failed with code: 401 Response: {\\\"error\\\":{\\\"message\\\":\\\"No auth credentials found\\\",\\\"code\\\":401}}\"}",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Delete Article - Non-whitelisted IP",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Delete Article - IP Whitelisted",
+      "status": "SKIP",
+      "details": "No generated articles to delete",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Get Config - Non-whitelisted IP",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Get Config - IP Whitelisted",
+      "status": "PASS",
+      "details": "Retrieved config - Model: google/gemini-2.5-flash",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Update Config - IP Whitelisted",
+      "status": "PASS",
+      "details": "Configuration updated successfully",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Contact Form",
+      "status": "PASS",
+      "details": "Contact form submitted successfully",
+      "timestamp": "2025-07-28 14:50:20"
+    },
+    {
+      "test": "Contact Form Validation",
+      "status": "PASS",
+      "details": "Correctly rejected invalid contact data",
+      "timestamp": "2025-07-28 14:50:20"
+    }
+  ],
+  "timestamp": "2025-07-28T14:50:20.219745"
+}
