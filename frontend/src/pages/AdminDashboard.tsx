@@ -453,12 +453,64 @@ const AdminDashboard = () => {
         return renderArticles();
       case 'generator':
         return renderBlogGenerator();
-      case 'seo':
-        return <SEODashboard />;
-      case 'plugins':
-        return <PluginManager />;
       case 'settings':
-        return <div className="bg-white rounded-lg shadow-sm p-6"><h3 className="text-lg font-semibold">Settings</h3><p className="text-gray-600 mt-2">Settings panel for blog management and configuration.</p></div>;
+        return (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-gray-800">Configuration Settings</h2>
+            
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">OpenRouter API Configuration</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Current Model
+                    </label>
+                    <input
+                      type="text"
+                      value={config.openrouter_model || ''}
+                      onChange={(e) => setConfig(prev => ({ ...prev, openrouter_model: e.target.value }))}
+                      placeholder="e.g., google/gemini-2.5-flash"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      API Key (masked)
+                    </label>
+                    <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded-lg">
+                      {config.openrouter_api_key || 'Not set'}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Update API Key
+                    </label>
+                    <input
+                      type="password"
+                      placeholder="Enter new API key (leave blank to keep current)"
+                      onChange={(e) => setConfig(prev => ({ ...prev, new_api_key: e.target.value }))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <button
+                    onClick={() => updateConfig({
+                      openrouter_model: config.openrouter_model,
+                      ...(config.new_api_key && { openrouter_api_key: config.new_api_key })
+                    })}
+                    className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+                  >
+                    Update Configuration
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return renderArticles();
     }
