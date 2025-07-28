@@ -176,7 +176,7 @@ const AdminDashboard = () => {
   const deleteArticle = async (filename) => {
     if (confirm('Are you sure you want to delete this article?')) {
       try {
-        const response = await fetch('http://localhost:8080/api/delete-article.php', {
+        const response = await fetch('/api/delete-article.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
