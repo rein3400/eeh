@@ -356,8 +356,7 @@ async def get_config(req: Request, current_user: dict = Depends(get_current_user
             "success": True,
             "config": {
                 "openrouter_model": config["model"],
-                "openrouter_api_key": config["api_key"][:10] + "..." if config["api_key"] else "Not set",
-                "admin_username": os.getenv("ADMIN_USERNAME", "Reze")
+                "openrouter_api_key": config["api_key"][:10] + "..." if config["api_key"] else "Not set"
             }
         }
     except Exception as e:
