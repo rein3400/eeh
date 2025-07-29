@@ -59,6 +59,9 @@ backend:
       - working: false
         agent: "testing"
         comment: "❌ FAILED - OpenRouter API integration still failing with 401 'No auth credentials found' error. Article generation endpoint now properly protected with IP whitelisting (correctly blocks non-whitelisted IPs), but OpenRouter API key remains invalid/expired. The IP whitelisting authentication works correctly, but the external API integration needs a valid API key to function."
+      - working: false
+        agent: "testing"
+        comment: "❌ CONFIRMED ISSUE - OpenRouter API integration failing due to invalid/expired API key (external service issue). IP whitelisting protection is working correctly - endpoint properly blocks non-whitelisted IPs with 403 status and allows whitelisted IP access. The authentication system is functioning perfectly, but the external API key needs to be updated for article generation to work."
 
   - task: "Configuration Management"
     implemented: true
