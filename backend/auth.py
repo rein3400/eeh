@@ -42,27 +42,27 @@ def get_current_user(request: Request) -> dict:
         "authorized": verification["authorized"]
     }
 
-# Legacy compatibility functions (kept for existing imports but simplified)
+# Legacy authentication functions kept for backward compatibility only
 def authenticate_user(username: str, password: str) -> bool:
-    """Legacy function for backward compatibility - always returns False"""
+    """Deprecated: Using IP whitelisting instead"""
     return False
 
 def create_access_token(data: dict, expires_delta=None):
-    """Legacy function for backward compatibility - returns dummy token"""
-    return "ip_whitelist_access"
+    """Deprecated: Using IP whitelisting instead"""
+    return "deprecated"
 
 def verify_token(token: str) -> dict:
-    """Legacy function for backward compatibility"""
-    return {"sub": "admin"}
+    """Deprecated: Using IP whitelisting instead"""
+    return {"sub": "deprecated"}
 
 def create_session(username: str) -> str:
-    """Legacy function for backward compatibility"""
-    return "ip_whitelist_session"
+    """Deprecated: Using IP whitelisting instead"""
+    return "deprecated"
 
 def get_session(token: str) -> Optional[dict]:
-    """Legacy function for backward compatibility"""
+    """Deprecated: Using IP whitelisting instead"""
     return None
 
 def delete_session(token: str):
-    """Legacy function for backward compatibility"""
+    """Deprecated: Using IP whitelisting instead"""
     pass
