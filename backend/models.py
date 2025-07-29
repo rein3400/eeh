@@ -30,8 +30,6 @@ class ContactRequest(BaseModel):
 class ConfigUpdate(BaseModel):
     openrouter_api_key: Optional[str] = None
     openrouter_model: Optional[str] = None
-    admin_username: Optional[str] = None
-    admin_password: Optional[str] = None
 
 class SEOAnalysisRequest(BaseModel):
     action: str
