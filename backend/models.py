@@ -42,8 +42,4 @@ class PluginAction(BaseModel):
     hook: Optional[str] = None
     data: Optional[Dict[str, Any]] = None
 
-class SessionData(BaseModel):
-    admin_logged_in: bool = False
-    admin_username: Optional[str] = None
-    session_token: Optional[str] = None
-    login_time: Optional[datetime] = None
+# Legacy session model removed - now using IP whitelisting
