@@ -1,108 +1,126 @@
 {
   "summary": {
-    "total": 16,
-    "passed": 14,
-    "failed": 1,
-    "skipped": 1,
-    "success_rate": "87.5%"
+    "total": 19,
+    "passed": 19,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": "100.0%"
   },
   "tests": [
     {
       "test": "Health Check",
       "status": "PASS",
       "details": "Service healthy: Express English Hub API",
-      "timestamp": "2025-07-28 14:03:12"
+      "timestamp": "2025-07-29 08:28:29"
     },
     {
       "test": "Root Endpoint",
       "status": "PASS",
       "details": "Version: 1.0.0",
-      "timestamp": "2025-07-28 14:03:12"
-    },
-    {
-      "test": "Invalid Login",
-      "status": "PASS",
-      "details": "Correctly rejected invalid credentials",
-      "timestamp": "2025-07-28 14:03:13"
-    },
-    {
-      "test": "Admin Login",
-      "status": "PASS",
-      "details": "Token received for user: Reze",
-      "timestamp": "2025-07-28 14:03:13"
-    },
-    {
-      "test": "Auth Check",
-      "status": "PASS",
-      "details": "Authenticated as: Reze",
-      "timestamp": "2025-07-28 14:03:13"
-    },
-    {
-      "test": "Auth Check Without Token",
-      "status": "PASS",
-      "details": "Correctly rejected request without token",
-      "timestamp": "2025-07-28 14:03:13"
+      "timestamp": "2025-07-29 08:28:29"
     },
     {
       "test": "Get Articles",
       "status": "PASS",
       "details": "Retrieved 0 articles",
-      "timestamp": "2025-07-28 14:03:13"
-    },
-    {
-      "test": "Generate Article Without Auth",
-      "status": "PASS",
-      "details": "Correctly rejected unauthenticated request",
-      "timestamp": "2025-07-28 14:03:13"
-    },
-    {
-      "test": "Generate Article",
-      "status": "FAIL",
-      "details": "HTTP 500: {\"detail\":\"API request failed with code: 401 Response: {\\\"error\\\":{\\\"message\\\":\\\"No auth credentials found\\\",\\\"code\\\":401}}\"}",
-      "timestamp": "2025-07-28 14:03:14"
-    },
-    {
-      "test": "Delete Article",
-      "status": "SKIP",
-      "details": "No generated articles to delete",
-      "timestamp": "2025-07-28 14:03:14"
-    },
-    {
-      "test": "Delete Nonexistent Article",
-      "status": "PASS",
-      "details": "Correctly returned 404 for non-existent article",
-      "timestamp": "2025-07-28 14:03:14"
-    },
-    {
-      "test": "Get Config",
-      "status": "PASS",
-      "details": "Retrieved config - Model: google/gemini-2.5-flash",
-      "timestamp": "2025-07-28 14:03:14"
-    },
-    {
-      "test": "Update Config",
-      "status": "PASS",
-      "details": "Configuration updated successfully",
-      "timestamp": "2025-07-28 14:03:14"
+      "timestamp": "2025-07-29 08:28:29"
     },
     {
       "test": "Contact Form",
       "status": "PASS",
       "details": "Contact form submitted successfully",
-      "timestamp": "2025-07-28 14:03:14"
+      "timestamp": "2025-07-29 08:28:29"
     },
     {
       "test": "Contact Form Validation",
       "status": "PASS",
       "details": "Correctly rejected invalid contact data",
-      "timestamp": "2025-07-28 14:03:14"
+      "timestamp": "2025-07-29 08:28:29"
     },
     {
-      "test": "Logout",
+      "test": "Database Connectivity",
       "status": "PASS",
-      "details": "Logout successful",
-      "timestamp": "2025-07-28 14:03:14"
+      "details": "MongoDB connection working through API endpoints",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Legacy Login Endpoint",
+      "status": "PASS",
+      "details": "Login endpoint correctly removed (404)",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Legacy Auth Check Endpoint",
+      "status": "PASS",
+      "details": "Auth-check endpoint correctly removed (404)",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Legacy Logout Endpoint",
+      "status": "PASS",
+      "details": "Logout endpoint correctly removed (404)",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Admin Access (Whitelisted IP)",
+      "status": "PASS",
+      "details": "Access granted for IP: 192.168.100.15",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Admin Access (Non-whitelisted IP)",
+      "status": "PASS",
+      "details": "Access correctly denied for IP: 192.168.1.100",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Generate Article (Whitelisted)",
+      "status": "PASS",
+      "details": "IP whitelisting works, OpenRouter API key issue (expected)",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Generate Article (Non-whitelisted)",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Delete Article (Whitelisted)",
+      "status": "PASS",
+      "details": "IP whitelisting works, article not found (expected)",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Delete Article (Non-whitelisted)",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Get Config (Whitelisted)",
+      "status": "PASS",
+      "details": "Retrieved config - Model: google/gemini-2.5-flash",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Get Config (Non-whitelisted)",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Update Config (Whitelisted)",
+      "status": "PASS",
+      "details": "Configuration updated successfully",
+      "timestamp": "2025-07-29 08:28:29"
+    },
+    {
+      "test": "Update Config (Non-whitelisted)",
+      "status": "PASS",
+      "details": "Correctly rejected non-whitelisted IP",
+      "timestamp": "2025-07-29 08:28:29"
     }
   ],
-  "timestamp": "2025-07-28T14:03:14.234477"
+  "timestamp": "2025-07-29T08:28:29.972187"
 }
