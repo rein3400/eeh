@@ -17,16 +17,7 @@ class Article(BaseModel):
     size: int
     keywords: str
 
-class LoginRequest(BaseModel):
-    username: str
-    password: str
-
-class LoginResponse(BaseModel):
-    success: bool
-    message: str
-    token: Optional[str] = None
-    username: Optional[str] = None
-    login_time: Optional[str] = None
+# Legacy login models removed - now using IP whitelisting
 
 class ContactRequest(BaseModel):
     name: str
