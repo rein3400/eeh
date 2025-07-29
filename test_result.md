@@ -180,6 +180,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "✓ PASSED - Articles management tab accessible and shows existing articles. Blog Generator tab works with keyword input field for generating articles. Logout functionality tested and works properly. All admin navigation and features functional."
+      - working: "NA"
+        agent: "testing"
+        comment: "NEEDS TESTING - Admin dashboard features need to be tested with new IP whitelisting system. Since current IP is not whitelisted, cannot test admin dashboard functionality directly. However, access control is working correctly - shows proper access denied screen for non-whitelisted IPs."
 
   - task: "Contact Form"
     implemented: true
