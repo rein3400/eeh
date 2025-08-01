@@ -402,7 +402,7 @@ const AdminDashboard = () => {
                       Update API Key
                     </label>
                     <input
-                      type="password"
+                      type="text"
                       placeholder="Enter new API key (leave blank to keep current)"
                       onChange={(e) => setConfig(prev => ({ ...prev, new_api_key: e.target.value }))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
