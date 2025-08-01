@@ -353,7 +353,7 @@ const Home = () => {
               <div className="mb-8 sm:mb-12">
                 <div className="inline-block">
                     <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#e87211] tracking-[0.2em] mb-2 relative">
-                      EXPRESS ENGLISH HUB - TOEFL ITP & iBT Preparation
+                      EXPRESS ENGLISH HUB
                       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-[#e87211] to-transparent"></div>
                     </div>
                   <p className="text-xs sm:text-sm text-gray-500 tracking-widest uppercase mt-4">Your Gateway to Global Opportunities</p>

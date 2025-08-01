@@ -1,33 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  LayoutDashboard, 
-  Users, 
   FileText, 
   Settings, 
-  BarChart3, 
-  BookOpen,
-  MessageCircle,
-  Calendar,
-  Upload,
   Search,
   Bell,
   User,
-  LogOut,
   Plus,
-  Edit,
   Trash2,
   Eye,
-  Activity,
-  TrendingUp,
-  UserCheck,
-  Mail,
-  Phone,
   Globe,
-  Target,
-  Award,
-  Clock,
-  Filter,
-  Download,
   RefreshCw,
   Shield
 } from 'lucide-react';
@@ -76,7 +57,7 @@ const AdminDashboard = () => {
       
       const result = await response.json();
       
-      if (result.success && result.authorized) {
+      // ...login system removed...
         setHasAccess(true);
         setUserInfo({ username: 'admin', ip: result.ip });
         setAccessMessage('Access granted');
@@ -504,7 +485,7 @@ const AdminDashboard = () => {
           </div>
           <div className="p-8 text-center">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              Unauthorized Access
+              {/* Unauthorized Access removed with login system */}
             </h2>
             <p className="text-gray-600 mb-6">
               {accessMessage}

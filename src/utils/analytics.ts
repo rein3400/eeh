@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // Google Analytics configuration
 const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your actual GA4 Measurement ID
+// TODO: Ganti GA_MEASUREMENT_ID dengan ID Google Analytics asli sebelum deploy production!
 
 declare global {
   interface Window {

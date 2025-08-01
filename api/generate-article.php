@@ -1,5 +1,4 @@
 <?php
-session_start();
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -10,21 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Check authentication
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    http_response_code(401);
-    echo json_encode(['success' => false, 'error' => 'Authentication required']);
-    exit;
-}
-
-// Check session timeout (24 hours)
-$session_timeout = 24 * 60 * 60;
-if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time']) > $session_timeout) {
-    session_destroy();
-    http_response_code(401);
-    echo json_encode(['success' => false, 'error' => 'Session expired']);
-    exit;
-}
+// No authentication required
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -39,9 +24,19 @@ if (!$input || !isset($input['keywords']) || empty($input['keywords'])) {
     exit;
 }
 
-$keywords = $input['keywords'];
-$count = isset($input['count']) ? (int)$input['count'] : 1;
-$language = isset($input['language']) ? $input['language'] : 'id';
+$keywords = trim($input['keywords']);
+$count = isset($input['count']) ? max(1, min((int)$input['count'], 5)) : 1; // Limit to 1-5 articles
+$language = isset($input['language']) && in_array($input['language'], ['id', 'en']) ? $input['language'] : 'id';
+
+// Validate keywords length
+if (strlen($keywords) < 3) {
+    echo json_encode(['success' => false, 'error' => 'Keywords must be at least 3 characters long']);
+    exit;
+}
+if (strlen($keywords) > 200) {
+    echo json_encode(['success' => false, 'error' => 'Keywords too long (max 200 characters)']);
+    exit;
+}
 
 // OpenRouter API configuration
 $apiKey = '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';
@@ -540,8 +535,16 @@ try {
         // Generate filename
         $filename = sanitizeFilename($title) . '_' . date('Y-m-d_H-i-s') . '_' . ($i + 1) . '.html';
         
+        // Ensure articles directory exists
+        $articlesDir = __DIR__ . '/../articles/';
+        if (!is_dir($articlesDir)) {
+            if (!mkdir($articlesDir, 0755, true)) {
+                throw new Exception('Failed to create articles directory');
+            }
+        }
+        
         // Save article to file
-        $filePath = __DIR__ . '/../articles/' . $filename;
+        $filePath = $articlesDir . $filename;
         if (file_put_contents($filePath, $content) === false) {
             throw new Exception('Failed to save article file');
         }

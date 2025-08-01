@@ -1,5 +1,4 @@
-import React, { Suspense, lazy, useEffect } from 'react';
-import { PageSkeleton } from './components/Skeleton';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';

@@ -1,5 +1,4 @@
 <?php
-session_start();
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
@@ -15,10 +14,15 @@ $articles = [];
 
 try {
     if (!is_dir($articlesDir)) {
-        mkdir($articlesDir, 0755, true);
+        if (!mkdir($articlesDir, 0755, true)) {
+            throw new Exception('Failed to create articles directory');
+        }
     }
 
     $files = glob($articlesDir . '/*.html');
+    if ($files === false) {
+        $files = [];
+    }
     
     foreach ($files as $file) {
         $filename = basename($file);

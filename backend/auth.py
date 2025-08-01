@@ -1,68 +1,83 @@
-import os
-from typing import Optional
-from fastapi import HTTPException, status, Request
-from database import get_collection
+from flask import Flask, request, jsonify, session
+import hmac
+import secrets
+import time
+import logging
+from functools import wraps
+from collections import defaultdict
 
-# IP Whitelisting Configuration
-WHITELISTED_IPS = ["192.168.100.15"]
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(32)
 
-def get_client_ip(request: Request) -> str:
-    """Get client IP address from request"""
-    # Try to get real IP from headers (for reverse proxy setups)
-    x_forwarded_for = request.headers.get("X-Forwarded-For")
-    if x_forwarded_for:
-        # X-Forwarded-For can contain multiple IPs, get the first one
-        return x_forwarded_for.split(",")[0].strip()
+# Admin password hash
+ADMIN_PASSWORD = 'kiyotaka'  # Should be stored as environment variable in production
+login_attempts = defaultdict(list)
+
+def rate_limit(max_attempts=3, window=300):
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+            now = time.time()
+
+            # Purge old attempts
+            login_attempts[client_ip] = [t for t in login_attempts[client_ip] if now - t < window]
+
+            if len(login_attempts[client_ip]) >= max_attempts:
+                logging.warning(f"Rate limit exceeded for IP: {client_ip}")
+                return jsonify({"success": False, "error": "Too many attempts"}), 429
+
+            return f(*args, **kwargs)
+        return wrapped
+    return decorator
+
+@app.route('/api/login', methods=['POST', 'OPTIONS'])
+@rate_limit()
+def login():
+    if request.method == 'OPTIONS':
+        return '', 200
     
-    x_real_ip = request.headers.get("X-Real-IP")
-    if x_real_ip:
-        return x_real_ip.strip()
+    data = request.get_json()
+    password = data.get('password', '')
     
-    # Fallback to direct client IP
-    return request.client.host
+    try:
+        client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+        
+        # Secure password comparison
+        if not hmac.compare_digest(password.encode(), ADMIN_PASSWORD.encode()):
+            login_attempts[client_ip].append(time.time())
+            logging.warning(f"Failed login attempt from IP: {client_ip}")
+            time.sleep(1)  # Add delay to mitigate brute force
+            return jsonify({
+                'success': False,
+                'error': 'Invalid credentials'
+            }), 401
+        
+        # Password correct - create admin session
+        session_token = secrets.token_hex(32)
+        
+        # Store session data
+        session['admin_logged_in'] = True
+        # No username tracking as per requirements
+        session['session_token'] = session_token
+        session['login_time'] = int(time.time())
+        
+        logging.info(f"Admin login successful from IP: {client_ip} at {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        
+        return jsonify({
+            'success': True,
+            'message': 'Login successful',
+            'token': session_token,
+            # No username in response
+            'login_time': time.strftime('%Y-%m-%d %H:%M:%S')
+        })
+        
+    except Exception as e:
+        logging.error(f"Authentication error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Authentication service temporarily unavailable'
+        }), 500
 
-def verify_ip_whitelist(request: Request):
-    """Verify if client IP is in whitelist"""
-    client_ip = get_client_ip(request)
-    
-    if client_ip not in WHITELISTED_IPS:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail=f"Access denied. IP {client_ip} is not whitelisted."
-        )
-    
-    return {"ip": client_ip, "authorized": True}
-
-def get_current_user(request: Request) -> dict:
-    """Get current user based on IP whitelist"""
-    verification = verify_ip_whitelist(request)
-    return {
-        "username": "admin",
-        "ip": verification["ip"],
-        "authorized": verification["authorized"]
-    }
-
-# Legacy authentication functions kept for backward compatibility only
-def authenticate_user(username: str, password: str) -> bool:
-    """Deprecated: Using IP whitelisting instead"""
-    return False
-
-def create_access_token(data: dict, expires_delta=None):
-    """Deprecated: Using IP whitelisting instead"""
-    return "deprecated"
-
-def verify_token(token: str) -> dict:
-    """Deprecated: Using IP whitelisting instead"""
-    return {"sub": "deprecated"}
-
-def create_session(username: str) -> str:
-    """Deprecated: Using IP whitelisting instead"""
-    return "deprecated"
-
-def get_session(token: str) -> Optional[dict]:
-    """Deprecated: Using IP whitelisting instead"""
-    return None
-
-def delete_session(token: str):
-    """Deprecated: Using IP whitelisting instead"""
-    pass
+if __name__ == '__main__':
+    app.run(debug=True)

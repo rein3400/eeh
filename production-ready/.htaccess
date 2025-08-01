@@ -14,3 +14,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/api/
 RewriteCond %{REQUEST_URI} !^/articles/
 RewriteRule . /index.html [L]
+# Enable PHP error logging
+php_flag log_errors on
+php_value error_log "d:\RealUses\eeh\php_errors.log"
+php_value display_errors 0
+php_value display_startup_errors 0

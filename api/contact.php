@@ -64,9 +64,23 @@ if (strlen($message) < 10) {
 session_start();
 $current_time = time();
 $last_submission = isset($_SESSION['last_contact_submission']) ? $_SESSION['last_contact_submission'] : 0;
+$submission_count = isset($_SESSION['contact_submission_count']) ? $_SESSION['contact_submission_count'] : 0;
 
-if ($current_time - $last_submission < 60) { // 1 minute rate limit
-    echo json_encode(['success' => false, 'error' => 'Please wait before submitting another message']);
+// Reset count if more than 1 hour has passed
+if ($current_time - $last_submission > 3600) {
+    $_SESSION['contact_submission_count'] = 0;
+    $submission_count = 0;
+}
+
+// Allow max 3 submissions per hour
+if ($submission_count >= 3) {
+    echo json_encode(['success' => false, 'error' => 'Too many submissions. Please try again later.']);
+    exit;
+}
+
+// Minimum 30 seconds between submissions
+if ($current_time - $last_submission < 30) {
+    echo json_encode(['success' => false, 'error' => 'Please wait 30 seconds before submitting another message']);
     exit;
 }
 
@@ -162,6 +176,7 @@ try {
         
         // Update session to prevent spam
         $_SESSION['last_contact_submission'] = $current_time;
+        $_SESSION['contact_submission_count'] = $submission_count + 1;
         
         echo json_encode([
             'success' => true,

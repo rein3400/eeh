@@ -9,8 +9,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': 'http://localhost:8080',
-      '/articles': 'http://localhost:8080',
+      '/api': {
+        target: 'http://localhost:8001',
+        changeOrigin: true,
+        secure: false
+      }
     },
   },
   build: {

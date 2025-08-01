@@ -135,9 +135,19 @@ function generateSitemap() {
     
     $sitemap .= "</urlset>\n";
     
+    // Ensure public directory exists
+    $publicDir = __DIR__ . '/../public/';
+    if (!is_dir($publicDir)) {
+        if (!mkdir($publicDir, 0755, true)) {
+            throw new Exception('Failed to create public directory');
+        }
+    }
+    
     // Save sitemap
-    $sitemapPath = __DIR__ . '/../public/sitemap.xml';
-    file_put_contents($sitemapPath, $sitemap);
+    $sitemapPath = $publicDir . 'sitemap.xml';
+    if (file_put_contents($sitemapPath, $sitemap) === false) {
+        throw new Exception('Failed to save sitemap file');
+    }
     
     return [
         'success' => true,

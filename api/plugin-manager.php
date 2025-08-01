@@ -17,6 +17,15 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit;
 }
 
+// Check session timeout (24 hours)
+$session_timeout = 24 * 60 * 60;
+if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time']) > $session_timeout) {
+    session_destroy();
+    http_response_code(401);
+    echo json_encode(['success' => false, 'error' => 'Session expired']);
+    exit;
+}
+
 $pluginsDir = __DIR__ . '/../plugins/';
 $activePluginsFile = $pluginsDir . 'active_plugins.json';
 
@@ -199,13 +208,18 @@ try {
                         throw new Exception('Upload error: ' . $file['error']);
                     }
                     
-                    // Validate file type
+                    // Validate file type and size
                     $finfo = finfo_open(FILEINFO_MIME_TYPE);
                     $mimeType = finfo_file($finfo, $file['tmp_name']);
                     finfo_close($finfo);
                     
-                    if ($mimeType !== 'application/zip') {
+                    if (!in_array($mimeType, ['application/zip', 'application/x-zip-compressed'])) {
                         throw new Exception('Invalid file type. Only ZIP files are allowed.');
+                    }
+                    
+                    // Check file size (max 10MB)
+                    if ($file['size'] > 10 * 1024 * 1024) {
+                        throw new Exception('File too large. Maximum size is 10MB.');
                     }
                     
                     // Generate unique plugin name

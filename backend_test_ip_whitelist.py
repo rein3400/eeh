@@ -11,11 +11,11 @@ import os
 from datetime import datetime
 
 # Configuration - Use localhost for internal testing
-BACKEND_URL = "http://localhost:8001"
+BACKEND_URL = "http://localhost:5000"
 API_BASE = f"{BACKEND_URL}/api"
 
 # IP Whitelisting configuration
-WHITELISTED_IP = "192.168.100.15"
+WHITELISTED_IP = "192.168.1.15"  # Matches 192.168.1.0/24 CIDR range
 
 # Global variables for test state
 test_results = []
@@ -464,7 +464,7 @@ if __name__ == "__main__":
         passed, failed, skipped = run_all_tests()
         
         # Save detailed results
-        with open("/app/backend_test_ip_whitelist_results.json", "w") as f:
+        with open("backend_test_ip_whitelist_results.json", "w") as f:
             json.dump({
                 "summary": {
                     "total": len(test_results),
